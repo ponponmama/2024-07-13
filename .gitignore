@@ -2,3 +2,5 @@
 /public/storage
 /vendor
 .env
+src/nginx.crt
+src/nginx.key

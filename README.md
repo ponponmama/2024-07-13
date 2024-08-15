@@ -83,6 +83,143 @@
 - **6.php artisan db:seed**
 
 
+#### HTTPS 証明書の発行方法
+QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
+HTTPS通信を行うためにはSSL証明書が必要です。以下のコマンドを使用して自己署名のSSL証明書を生成できます。
+
+Bash
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt
+
+このコマンド実行時には、以下のような情報を入力します。
+
+- 国名 (2文字コード)
+- 州または県名
+- 市区町村名
+- 組織名
+- 組織内部名
+- 共通名（サーバのFQDNまたはあなたの名前）
+- メールアドレス
+
+例えば、以下のように入力します。
+
+Country Name (2 letter code) [AU]: JP
+State or Province Name (full name) [Some-State]: 都道府県
+Locality Name (eg, city) []: 市町村
+Organization Name (eg, company) [Internet Widgits Pty Ltd]: 会社名等
+Common Name (e.g. server FQDN or YOUR name) []: ponponmama　名前
+Email Address []: yourmail@gmail.com　　メールアドレス
+
+このコマンドにより、`nginx.key` (秘密鍵) と `nginx.crt` (公開証明書) が生成されます。生成時にはいくつかの質問に答える必要があります。
+
+
+#### Docker 環境設定
+
+`docker-compose.yml` ファイルを使用して、Docker環境を構築します。HTTPS用のポート443を開放し、SSL証明書と秘密鍵を適切な場所にマウントします。
+
+#### docker-compose.ymlを編集
+
+ports:
+      - "443:443" # HTTPS用のポートを追加
+volumes:      
+- ./path/to/your/nginx.crt:/path/to/your/nginx.crt # SSL証明書をマウント
+- ./path/to/your/nginx.key:/path/to/your/nginx.key # 秘密鍵をマウント
+
+####default.confを編集
+listen 443 ssl;
+ssl_certificate /path/to/your/ssl/nginx.crt;　 # SSL証明書へのパスを更新
+ssl_certificate_key /path/to/your/ssl/nginx.key;　 # 秘密鍵へのパスを更新
+
+####リマインダーメールを送るために必要なCronジョブの設定手順
+
+#####Laravel スケジューラを利用するためには、Cronジョブの設定だけでなく、Laravelのスケジューラを適切に設定する必要があります。以下に、Laravelのスケジューラ設定の完全な手順を示します。
+
+- Laravel スケジューラの設定
+
+Laravelのスケジューラを使用するには、app/Console/Kernel.php ファイル内でスケジュールされたタスクを定義する必要があります。以下は、Kernel.php ファイルにスケジュールを設定する方法の例です。
+
+protected function schedule(Schedule $schedule)
+    {
+        // ここにスケジュールされたコマンドを追加します。
+        $schedule->command('inspire')
+                 ->hourly();
+
+        // 予約リマインダーメールを毎日朝7時に送信するスケジュール
+        $schedule->command('send:reservation-reminder')
+                 ->dailyAt('07:00')
+                 ->appendOutputTo(storage_path('logs/reservation_reminder.log'));
+    }
+
+この設定では、send:reservation-reminder コマンドが毎日7時に実行され、その実行結果が storage/logs/reservation_reminder.log に記録されます。appendOutputTo メソッドを使用して、コマンドの出力をログファイルに追記するように設定しています。
+
+
+1. Cronジョブの編集
+-コンテナ内で以下のコマンドを実行してCronジョブを編集します。
+
+Bash
+
+crontab -e
+
+2. Cronジョブの追加
+エディタが開いたら、以下の行を追加してください。
+
+Bash
+
+* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
+
+-この設定は、毎分 /var/www ディレクトリに移動し、php artisan schedule:run コマンドを実行します。出力は /dev/null にリダイレクトされ、エラーも同様に捨てられます。
+このCronジョブは、毎分Laravelのschedule:runコマンドを実行し、Laravelのスケジューラによって定義されたタスクを処理します。
+これで、Laravel スケジューラが正しく設定され、定期的に実行されるようになります。
+
+3. Cronサービスの確認と起動
+Cronサービスが動作しているかを確認します。
+
+Bash
+
+service cron status
+
+動作していない場合は、以下のコマンドでCronを起動してください。
+
+Bash
+
+service cron start
+
+4. Cronのインストール
+Cronがインストールされていない場合は、以下の手順でインストールします。
+
+Bash
+
+apt-get update
+apt-get install cron -y
+
+5. Dockerfileへの追加
+Dockerコンテナを再構築する際に毎回Cronをインストールするのは非効率的です。そのため、Cronのインストールと設定をDockerfileに追加することをお勧めします。
+
+FROM php:7.4-fpm
+
+# 必要なパッケージのインストール
+RUN apt-get update && apt-get install -y cron
+
+# Laravel スケジューラ用のクロンジョブ設定
+RUN echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" | crontab -
+
+# cron サービスの起動
+CMD ["cron", "-f"]
+
+6. エディタのインストール
+Cronジョブを編集するためのエディタが必要です。`nano` や `vim` をインストールすることができます。
+
+Bash
+
+apt-get install nano -y
+# または
+apt-get install vim -y
+
+Laravel スケジューラが毎分実行され、定義されたタスクが自動的に処理されるようになります。
+Laravel スケジューラがコンテナ内で正しく設定され、定期的に実行されるようになります。
+
+
+
 ### URL
 - **開発環境:** [https://localhost/](https://localhost/)
 - **phpMyAdmin:** [http://localhost:8080/](http://localhost:8080/)
