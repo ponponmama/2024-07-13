@@ -197,13 +197,13 @@ Dockerコンテナを再構築する際に毎回Cronをインストールする�
 
 FROM php:7.4-fpm
 
-# 必要なパッケージのインストール
+## 必要なパッケージのインストール
 RUN apt-get update && apt-get install -y cron
 
-# Laravel スケジューラ用のクロンジョブ設定
+## Laravel スケジューラ用のクロンジョブ設定
 RUN echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" | crontab -
 
-# cron サービスの起動
+## cron サービスの起動
 CMD ["cron", "-f"]
 
 6. エディタのインストール
@@ -212,7 +212,7 @@ Cronジョブを編集するためのエディタが必要です。`nano` や `v
 Bash
 
 apt-get install nano -y
-# または
+## または
 apt-get install vim -y
 
 Laravel スケジューラが毎分実行され、定義されたタスクが自動的に処理されるようになります。
