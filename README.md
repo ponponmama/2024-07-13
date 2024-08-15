@@ -62,8 +62,9 @@
 
 ### テーブル設計・ER図
 
-![rese_table ER Diagram](rese_table.drawio.png)
+![rese_table ER Diagram](src/rese_table.drawio.png)
 
+![rese ER Diagram](src/rese.drawio.png)
 ### 環境構築
 
 - **PHP**: 8.1.29
