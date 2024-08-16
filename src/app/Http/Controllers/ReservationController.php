@@ -50,8 +50,7 @@ class ReservationController extends Controller
 
         if ($shop) {
             $current = Carbon::now();
-            $date = $current->format('Y-m-d'); // 現在の日付を使用
-
+            $date = $current->format('Y-m-d');
             $times = $this->shopService->getBusinessHours($shop->open_time, $shop->close_time, $date, $current);
         } else {
             $times = [];
@@ -126,10 +125,10 @@ class ReservationController extends Controller
         return redirect()->route('reservation.done');
     }
 
-    
+    // 予約完了ページ
     public function done()
     {
-        return view('done'); // 予約完了ページのビューを返す
+        return view('done'); 
     }
 
     /**
@@ -151,17 +150,9 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $reservation = Reservation::findOrFail($id);
-        $shop = $reservation->shop;
-        $current = Carbon::now();
-        $date = $current->format('Y-m-d'); // 現在の日付を使用
-
-        // ShopService を使用して営業時間内の時間を取得
-        $times = $this->shopService->getBusinessHours($shop->open_time, $shop->close_time, $date, $current);
-
-        return view('reservations.edit', compact('reservation', 'times'));
+        //
     }
 
     /**

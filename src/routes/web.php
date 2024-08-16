@@ -28,13 +28,6 @@ use App\Http\Controllers\QRController;
 // 店舗一覧ページ表示用,検索機能
 Route::get('/', [ShopController::class, 'index'])->name('shops.index');
 
-// 支払いフォーム表示
-Route::get('/payment', [PaymentController::class, 'showForm'])->name('payment.form');
-
-// 支払い処理
-Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
-
-
 // 登録
 Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -53,55 +46,44 @@ Route::get('/email/verify', function () {
 // メール認証リンクの再送信
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
-
     return back()->with('message', '認証メールを再送信しました。');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
-
-
 
 // その他の一般user用認証済みルート
 Route::middleware('auth')->group(function () {
     // Thanksページ
     Route::get('thanks', [AuthController::class, 'showThanksPage'])->name('thanks');
+    //予約ありがとうございますのページ
+    Route::get('/reservation/done', [ReservationController::class, 'done'])->name('reservation.done');
     //MYページ表示
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
     //支払いページ表示
     Route::get('/payment', [PaymentController::class, 'showForm'])->name('payment.form');
     //支払い
     Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
+    //MYページに予約情報を取得表示
+    Route::get('/reservations/my', [ReservationController::class, 'myReservations'])->name('reservations.my');
+    //ＭＹページから予約の変更
+    Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
+    //ＭＹページで予約の削除
+    Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
     //レビュー
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-
-    Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.detail');
-    //MYページに予約情報を取得表示
-    Route::get('/reservations/my', [ReservationController::class, 'myReservations'])->name('reservations.my');
-    Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
-    Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
-    Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
-
-    
     //お気に入り追加と解除
     Route::post('/shops/{shop}/favorite', [FavoriteController::class, 'favorite'])->name('shops.favorite');
     Route::delete('/shops/{shop}/unfavorite', [FavoriteController::class, 'unfavorite'])->name('shops.unfavorite');
 
-    // 店舗詳細表示用
+    // done.blade.phpから戻った時の店舗詳細表示用
     Route::get('/shops/{id}', [ShopController::class, 'shopDetails'])->name('shop.details');
 
-    // 予約ページ表示用
+    //詳しく見るボタンクリック 店舗の詳細と予約ページを表示
     Route::get('/shops/{id}/reservation', [ShopController::class, 'shopDetails'])->name('reservation.show');
 
-
-   // 予約関連のルート
+   // 予約関連のルート index,store,show,edit,update,destroy
     Route::resource('reservations', ReservationController::class);
-    //予約ありがとうございますのページへ
-    Route::get('/reservation/done', [ReservationController::class, 'done'])->name('reservation.done');
     //予約ページへ戻る
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
-    //edit,update,destroyアクションに対応route
-    Route::resource('reservations', ReservationController::class);
-    
-
     
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('shop_manager.shop_app')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/manage-shop.css') }}">
