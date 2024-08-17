@@ -81,4 +81,13 @@ class ShopController extends Controller
 
         return view('shops.index', ['shops' => $shops, 'areas' => $areas, 'genres' => $genres]);
     }
+
+    public function shopDetailsOrChoose($id)
+    {
+        if (auth()->check()) {
+            return $this->shopDetails(request(), $id);
+        } else {
+            return redirect()->route('choose');
+        }
+    }
 }

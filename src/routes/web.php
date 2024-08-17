@@ -27,7 +27,11 @@ use App\Http\Controllers\QRController;
 
 // 店舗一覧ページ表示用,検索機能
 Route::get('/', [ShopController::class, 'index'])->name('shops.index');
-
+//guestが詳しく見るボタンクリックした時の選択route
+Route::get('/shops/{id}/details', [ShopController::class, 'shopDetailsOrChoose'])->name('shop.details.guest');
+Route::get('/choose', function () {
+    return view('auth.choose');
+})->name('choose');
 // 登録
 Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -93,7 +97,12 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/admin/manage-shop-managers', [AdminController::class, 'manageShopManagers'])->name('admin.manage.shop_managers');
     Route::post('/admin/shop-managers', [AdminController::class, 'createShopManager'])->name('admin.create.shop_manager');
     Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+    //新規店舗と店舗代表者登録
+    Route::post('/admin/shop', [AdminController::class, 'createShop'])->name('admin.create.shop');
+    //店舗代表者登録
+    Route::post('/admin/shop-manager', [AdminController::class, 'createShopManager'])->name('admin.create.shop_manager');
 });
+
 
 // Shop Manager用のルート
 Route::middleware(['auth', 'role:2'])->group(function () {

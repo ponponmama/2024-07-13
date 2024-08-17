@@ -34,7 +34,6 @@
     </form>
 </div>
 @endsection
-
 @section('content')
     @if (session('success'))
         <div class="alert alert-success">
@@ -49,7 +48,7 @@
                     <h3 class="shop-name">{{ $shop->shop_name }}</h3>
                     <p class="shop-guide">＃{{ $shop->area }}  ＃{{ $shop->genre }}</p>
                     <div class="button-container">
-                        <a href="{{ route('shop.details', ['id' => $shop->id]) }}" class="shop-detail">詳しくみる</a>
+                        <a href="{{ route('shop.details.guest', ['id' => $shop->id]) }}" class="shop-detail">詳しくみる</a>
                         @auth
                             @if(auth()->user()->favorites->contains($shop))
                                 <form action="{{ route('shops.unfavorite', $shop) }}" method="POST">

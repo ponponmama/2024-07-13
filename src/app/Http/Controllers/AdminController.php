@@ -32,10 +32,12 @@ class AdminController extends Controller
         return view('admin.manage-shop-managers', ['managers' => $managers]);
     }
 
+    //店舗代表者を作成
     public function createShopManager(Request $request)
     {
         $validated = $request->validate([
-            'user_name' => 'required',
+            'shop_id' => 'required|exists:shops,id',
+            'user_name' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
         ]);
@@ -45,10 +47,59 @@ class AdminController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 2,
-            'email_verified_at' => now(),
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'ShopManagerが正常に作成されました');
+        return redirect()->route('admin.dashboard')->with('success', '新しいShopManagerが正常に登録されました');
+    }   
+
+    //新しい店舗とその代表者を同時に作成
+    public function createShop(Request $request)
+    {
+        $validated = $request->validate([
+            'user_name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'shop_name' => 'required|string',
+            'description' => 'nullable|string',
+            'genre' => 'required|string',
+            'area' => 'required|string',
+            'image' => 'nullable|image',
+            'open_time' => 'nullable|string',
+            'close_time' => 'nullable|string',
+        ]);
+
+        // ユーザー（店舗代表者）を作成
+        $user = User::create([
+            'user_name' => $validated['user_name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => 2,
+        ]);
+
+        // 画像ファイルがある場合はアップロード
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        // 店舗を作成し、作成したユーザーを店舗代表者として関連付ける
+        $shop = Shop::create([
+            'shop_name' => $validated['shop_name'],
+            'description' => $validated['description'],
+            'genre' => $validated['genre'],
+            'area' => $validated['area'],
+            'image' => $validated['image'] ?? null,
+            'open_time' => $validated['open_time'],
+            'close_time' => $validated['close_time'],
+            'user_id' => $user->id,
+        ]);
+
+        // 既存の店舗に新しく作成したユーザーを店舗代表者として関連付ける
+        $shop = Shop::find($validated['shop_id']);
+        $shop->user_id = $user->id;
+        $shop->save();
+
+        return redirect()->route('admin.dashboard')->with('success', '新しい店舗とShopManagerが正常に作成されました');
     }
 
     public function destroy(User $user)

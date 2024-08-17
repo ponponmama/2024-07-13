@@ -13,15 +13,17 @@
     color: black;
 }
 
-.registration-text {
+.registration-text,
+.registration-text-low {
     margin: 6px auto;
     padding: 4px;
     font-size: 1rem;
     font-weight: bold;
-    color: #0056b3;
+    color: black;
 }
 
-.form-title {
+.title-box,
+.registration-text-box {
     margin: 4px;
     padding: 4px;
     font-size: 1.2rem;
@@ -29,7 +31,8 @@
     color: #0056b3;
 }
 
-.registration-form {
+.registration-form,
+.registration-form-low {
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 4px rgba(2, 0, 77, 0.61);
@@ -39,7 +42,12 @@
     position: relative;
 }
 
-.create-form {
+.registration-form-low {
+    margin-top: 5%;
+}
+
+.create-form,
+.create-shop-form {
     width: 100%;
     padding: 4px;
 }
@@ -55,32 +63,39 @@
 .icon-container {
     display: inline-block;
     vertical-align: middle;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .icon-container img {
     width: 30px;
     height: 30px;
-    padding: 4px;
+    padding: 3px;
+    margin: 0 5px;
 }
 
+.input-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.time,
 .form-group {
     display: inline-block;
     vertical-align: middle;
-    width: 66%;
+    width: 65%;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input {
     width: 100%;
     padding: 18px 4px 0px 4px;
     border: none;
     border-bottom: 1px solid black;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1.4rem;
     background-color: transparent;
-    margin: 0 4%;
     outline: none;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -91,14 +106,61 @@ input::placeholder {
     font-weight: bold;
 }
 
+input[type="time"] {
+    width: 70%;
+    text-align: center;
+    padding: 2px;
+    font-size: 1.3rem;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="time"]::-moz-focus-inner {
+    display: none;
+}
+
+input[type="time"]::-ms-clear {
+    display: none;
+}
+
+label {
+    width: 50%;
+    font-size: 0.8rem;
+    padding: 2px;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.input-group-time {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.time {
+    display: flex;
+    align-items: end;
+}
+
+
 .button-container {
     display: flex;
     justify-content: center;
     margin: 2%;
 }
 
-.register-button {
-    width: 40%;
+.register-button,
+.new-register-button {
+    width: 50%;
     height: 6%;
     padding: 8px 20px;
     background-color: #0056b3;
@@ -119,9 +181,8 @@ input::placeholder {
 @media (max-width: 768px) {
 
     .registration-form,
-    .login-form,
-    .thanks-form {
-        width: 80% !important;
+    .registration-form-low {
+        width: 90% !important;
     }
 
     .title-box {
@@ -146,23 +207,13 @@ input::placeholder {
     }
 
     .register-button {
-        width: 30%;
+        width: 50%;
         height: 6%;
         padding: 8px 4px;
-        font-size: 1rem;
+        font-size: 0.8rem;
         text-align: center;
     }
 
-    .login-button {
-        width: 36%;
-        height: 6%;
-        font-size: 1rem;
-    }
 
-    .thanks-button {
-        width: 38%;
-        height: 6%;
-        font-size: 1rem;
-    }
 
 }

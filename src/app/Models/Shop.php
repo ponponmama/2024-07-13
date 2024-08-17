@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Shop extends Model
 {
@@ -32,5 +34,17 @@ class Shop extends Model
         return null;
     }
 
+    // adminダッシュボードadminで営業時間の表示
+    //open_time のゲッター
+    public function getOpenTimeAttribute($value)
+    {
+        return Carbon::createFromFormat('H:i:s', $value)->format('H:i');
+    }
+
+    // close_time のゲッター
+    public function getCloseTimeAttribute($value)
+    {
+        return Carbon::createFromFormat('H:i:s', $value)->format('H:i');
+    }
     
 }
