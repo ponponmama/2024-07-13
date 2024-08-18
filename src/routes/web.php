@@ -86,17 +86,15 @@ Route::middleware('auth')->group(function () {
 
    // 予約関連のルート index,store,show,edit,update,destroy
     Route::resource('reservations', ReservationController::class);
-    //予約ページへ戻る
+    //予約作成ページ
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
     
 });
 
 // Admin用のルート
 Route::middleware(['auth', 'role:1'])->group(function () {
+    //ダッシュボード表示
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/manage-shop-managers', [AdminController::class, 'manageShopManagers'])->name('admin.manage.shop_managers');
-    Route::post('/admin/shop-managers', [AdminController::class, 'createShopManager'])->name('admin.create.shop_manager');
-    Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
     //新規店舗と店舗代表者登録
     Route::post('/admin/shop', [AdminController::class, 'createShop'])->name('admin.create.shop');
     //店舗代表者登録
@@ -106,9 +104,10 @@ Route::middleware(['auth', 'role:1'])->group(function () {
 
 // Shop Manager用のルート
 Route::middleware(['auth', 'role:2'])->group(function () {
+    //ダッシュボード表示
     Route::get('/shop-manager/dashboard', [ShopManagerController::class, 'index'])->name('shop_manager.dashboard');
+    //ナビゲーションメニュー用
     Route::get('/shop-manager/manage-shop', [ShopManagerController::class, 'manageShop'])->name('manage.shop');
-    Route::get('/shop-manager/reservations', [ShopManagerController::class, 'showReservations'])->name('shop_manager.reservations');
     // 店舗情報の更新
     Route::put('/shop-manager/shop/{id}', [ShopManagerController::class, 'update'])->name('shop_manager.update');
     // 店舗情報の編集ページ

@@ -162,6 +162,8 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //マイページで予約の日時変更と削除
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
