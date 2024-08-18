@@ -112,10 +112,9 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::put('/shop-manager/shop/{id}', [ShopManagerController::class, 'update'])->name('shop_manager.update');
     // 店舗情報の編集ページ
     Route::get('/shop-manager/shop/{id}/edit', [ShopManagerController::class, 'edit'])->name('shop_manager.edit');
-    //予約照合
+    //店舗管理者が予約idを用いて予約照合(API部分)
     Route::get('/shop-manager/verify-reservation/{reservationId}', [ShopManagerController::class, 'verifyReservation'])->name('shop_manager.verify_reservation');
-
-   // QRコードの予約情報取得関連
+   // QRコードスキャン結果から予約情報取得、JSON形式で返すためのroute(APIにコード)
     Route::post('/reservation/details', [ReservationController::class, 'getReservationDetails'])->name('reservation.details');
 });
 

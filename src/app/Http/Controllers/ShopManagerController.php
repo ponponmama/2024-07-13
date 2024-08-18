@@ -80,7 +80,8 @@ class ShopManagerController extends Controller
         return view('shop_manager.reservations', ['reservations' => $reservations]);
     }
 
-    // 予約照合
+    // サーバーサイドで動作し、予約情報を照合、該当する予約詳細を表示
+    //ログイン済み店舗管理者の店舗idと照合した予約idを元に予約情報を検索、予約詳細表示。存在しない場合はエラーメッセージを表示。
     public function verifyReservation($reservationId)
     {
         $shopId = Auth::user()->shop->id;

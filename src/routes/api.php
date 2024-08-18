@@ -15,6 +15,7 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
+//
 Route::get('/reservation/{id}', [ReservationController::class, 'getReservationById']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

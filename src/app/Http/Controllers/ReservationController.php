@@ -215,7 +215,7 @@ class ReservationController extends Controller
         $reservation->delete();
         return redirect()->route('mypage')->with('success', '予約が削除されました。');
     }
-
+    //予約idをQRコードで取得し予約情報を検索し、JSON形式で返す。予約ID、予約日時、人数、顧客名、顧客のメールアドレスを含む
     public function getReservationById($id)
     {
         $reservation = Reservation::with('user')->findOrFail($id);
