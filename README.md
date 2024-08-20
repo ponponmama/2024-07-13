@@ -83,10 +83,90 @@
 - **5.php artisan migrate**
 - **6.php artisan db:seed**
 
+###クローン作製手順
+
+1. GitHubリポジトリのクローン
+
+https://github.com/ponponmama/20240713-erika_hara-rese.git
+
+2. 必要なパッケージのインストール
+
+Bash　
+
+sudo apt-get update
+
+sudo apt-get install php-curl
+
+
+PHPを再起動(必要に応じて)
+
+Bash
+
+docker-compose up --build
+
+
+
+php.ini ファイルで curl 拡張機能を有効にする
+
+extension=curl
+
+
+- curl拡張機能が正しくロードされているか確認
+
+Bash
+
+php -m | grep curl
+
+
+3. Composerを使用した依存関係のインストール
+
+Bash
+
+   composer install
+
+
+4. 環境設定ファイルの設定
+.env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
+
+Bash
+
+   cp .env.example .env
+
+
+5. アプリケーションキーの生成
+
+Bash
+
+   php artisan key:generate
+
+
+6.データベースのマイグレーション
+
+Bash
+
+   php artisan migrate
+
+7.データベースシーダーの実行
+
+Bash
+
+php artisan db:seed
+
+
+
+8.ローカルサーバーの起動
+
+Bash
+
+docker-compose up --build
+
+
+
 
 #### HTTPS 証明書の発行方法
 QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
 HTTPS通信を行うためにはSSL証明書が必要です。以下のコマンドを使用して自己署名のSSL証明書を生成できます。
+githubクローンには下記の証明書は入っていない為、作成してください。
 
 Bash
 
@@ -111,7 +191,7 @@ Organization Name (eg, company) [Internet Widgits Pty Ltd]: 会社名等
 Common Name (e.g. server FQDN or YOUR name) []: ponponmama　名前
 Email Address []: yourmail@gmail.com　　メールアドレス
 
-このコマンドにより、`nginx.key` (秘密鍵) と `nginx.crt` (公開証明書) が生成されます。生成時にはいくつかの質問に答える必要があります。
+このコマンドにより、`nginx.key` (秘密鍵) と `nginx.crt` (公開証明書) が生成されます。生成時には上記のようにいくつかの質問に答える必要があります。
 
 
 #### Docker 環境設定
@@ -129,7 +209,7 @@ volumes:
 ####default.confを編集
 listen 443 ssl;
 ssl_certificate /path/to/your/ssl/nginx.crt;　 # SSL証明書へのパスを更新
-ssl_certificate_key /path/to/your/ssl/nginx.key;　 # 秘密鍵へのパスを更新
+ssl_certificate_key /path/to/your/ssl/nginx.key;::　 # 秘密鍵へのパスを更新
 
 ####リマインダーメールを送るために必要なCronジョブの設定手順
 
@@ -151,74 +231,31 @@ protected function schedule(Schedule $schedule)
                  ->appendOutputTo(storage_path('logs/reservation_reminder.log'));
     }
 
-この設定では、send:reservation-reminder コマンドが毎日7時に実行され、その実行結果が storage/logs/reservation_reminder.log に記録されます。appendOutputTo メソッドを使用して、コマンドの出力をログファイルに追記するように設定しています。
+この設定では、send:reservation-reminder コマンドが毎日7時に実行され、その実行結果が storage/logs/reservation_reminder.log に記録されます。appendOutputTo メソッドを使用して、コマンドの出力をログファイルに追記するように設定しています。時間は指定したい時刻に変更ください。
 
 
-1. Cronジョブの編集
--コンテナ内で以下のコマンドを実行してCronジョブを編集します。
+### メール設定
 
-Bash
+プロジェクトでメール送信機能を使用するには、`.env` ファイルにメールサーバーの設定を行う必要があります。`.env.example` ファイルをコピーして `.env` ファイルを作成し、以下の設定を適切に更新してください。
 
-crontab -e
+- `MAIL_MAILER`: メールドライバー（例: smtp, sendmail）
+- `MAIL_HOST`: メールサーバーのホスト名
+- `MAIL_PORT`: メールサーバーのポート番号
+- `MAIL_USERNAME`: メールサーバーのユーザー名
+- `MAIL_PASSWORD`: メールサーバーのパスワード
+- `MAIL_ENCRYPTION`: メール送信の暗号化方式（例: tls, ssl）
+- `MAIL_FROM_NAME`: メール送信時の差出人名（環境変数 `APP_NAME` を使用する場合もあり）
 
-2. Cronジョブの追加
-エディタが開いたら、以下の行を追加してください。
+これらの設定を行うことで、アプリケーションからのメール送信が可能になります。
 
-Bash
+### Stripe 設定
 
-* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1
+プロジェクトで Stripe を使用するには、`.env` ファイルに Stripe の API キーを設定する必要があります。`.env.example` ファイルをコピーして `.env` ファイルを作成し、以下の設定を適切に更新してください。
 
--この設定は、毎分 /var/www ディレクトリに移動し、php artisan schedule:run コマンドを実行します。出力は /dev/null にリダイレクトされ、エラーも同様に捨てられます。
-このCronジョブは、毎分Laravelのschedule:runコマンドを実行し、Laravelのスケジューラによって定義されたタスクを処理します。
-これで、Laravel スケジューラが正しく設定され、定期的に実行されるようになります。
+- `STRIPE_KEY`: Stripe の公開可能キー（Public key）
+- `STRIPE_SECRET`: Stripe の秘密キー（Secret key）
 
-3. Cronサービスの確認と起動
-Cronサービスが動作しているかを確認します。
-
-Bash
-
-service cron status
-
-動作していない場合は、以下のコマンドでCronを起動してください。
-
-Bash
-
-service cron start
-
-4. Cronのインストール
-Cronがインストールされていない場合は、以下の手順でインストールします。
-
-Bash
-
-apt-get update
-apt-get install cron -y
-
-5. Dockerfileへの追加
-Dockerコンテナを再構築する際に毎回Cronをインストールするのは非効率的です。そのため、Cronのインストールと設定をDockerfileに追加することをお勧めします。
-
-FROM php:7.4-fpm
-
-### 必要なパッケージのインストール
-RUN apt-get update && apt-get install -y cron
-
-### Laravel スケジューラ用のクロンジョブ設定
-RUN echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" | crontab -
-
-### cron サービスの起動
-CMD ["cron", "-f"]
-
-6. エディタのインストール
-Cronジョブを編集するためのエディタが必要です。`nano` や `vim` をインストールすることができます。
-
-Bash
-
-apt-get install nano -y
-### または
-apt-get install vim -y
-
-Laravel スケジューラが毎分実行され、定義されたタスクが自動的に処理されるようになります。
-Laravel スケジューラがコンテナ内で正しく設定され、定期的に実行されるようになります。
-
+これらのキーは Stripe のダッシュボードから取得できます。セキュリティを保つために、これらのキーを公開リポジトリには絶対にアップロードしないでください。
 
 
 ### URL

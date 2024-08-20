@@ -15,7 +15,7 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-//
+//QRコードから読み取った予約idの情報(サーバサイド)
 Route::get('/reservation/{id}', [ReservationController::class, 'getReservationById']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
