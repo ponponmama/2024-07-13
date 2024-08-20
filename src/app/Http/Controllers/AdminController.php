@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -47,61 +51,68 @@ class AdminController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 2,
+            'email_verified_at' => now(),
+            'shop_id' => $validated['shop_id'],
         ]);
 
         return redirect()->route('admin.dashboard')->with('success', '新しいShopManagerが正常に登録されました');
-    }   
+    }
 
-    //新しい店舗とその代表者を同時に作成
+    //新しい店舗と代表者を作成
     public function createShop(Request $request)
     {
         $validated = $request->validate([
-            'user_name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
             'shop_name' => 'required|string',
             'description' => 'nullable|string',
             'genre' => 'required|string',
             'area' => 'required|string',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
             'open_time' => 'nullable|string',
             'close_time' => 'nullable|string',
+            'user_name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
         ]);
 
-        // ユーザー（店舗代表者）を作成
-        $user = User::create([
-            'user_name' => $validated['user_name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'role' => 2,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        // 画像ファイルがある場合はアップロード
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
+            $user = User::create([
+                'user_name' => $validated['user_name'],
+                'email' => $validated['email'],
+                'password' => Hash::make($validated['password']),
+                'role' => 2, 
+                'email_verified_at' => now(),
+            ]);
+
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('public/images', 'public');
+                dd($file, $imagePath);
+            }
+
+            $shop = Shop::create([
+                'shop_name' => $validated['shop_name'],
+                'description' => $validated['description'],
+                'genre' => $validated['genre'],
+                'area' => $validated['area'],
+                'image' => $imagePath,
+                'open_time' => $validated['open_time'],
+                'close_time' => $validated['close_time'],
+                'user_id' => $user->id,
+            ]);
+
+            $user->shop_id = $shop->id;
+            $user->save();
+
+            DB::commit();
+            return redirect()->route('admin.dashboard')->with('success', '新規店舗と代表者が正常に登録されました');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('admin.dashboard')->with('error', '登録に失敗しました: ' . $e->getMessage());
         }
-
-        // 店舗を作成し、作成したユーザーを店舗代表者として関連付ける
-        $shop = Shop::create([
-            'shop_name' => $validated['shop_name'],
-            'description' => $validated['description'],
-            'genre' => $validated['genre'],
-            'area' => $validated['area'],
-            'image' => $validated['image'] ?? null,
-            'open_time' => $validated['open_time'],
-            'close_time' => $validated['close_time'],
-            'user_id' => $user->id,
-        ]);
-
-        // 既存の店舗に新しく作成したユーザーを店舗代表者として関連付ける
-        $shop = Shop::find($validated['shop_id']);
-        $shop->user_id = $user->id;
-        $shop->save();
-
-        return redirect()->route('admin.dashboard')->with('success', '新しい店舗とShopManagerが正常に作成されました');
     }
-
+    
     public function destroy(User $user)
     {
         // 削除前に適切な権限があるか確認

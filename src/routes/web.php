@@ -99,6 +99,8 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::post('/admin/shop', [AdminController::class, 'createShop'])->name('admin.create.shop');
     //店舗代表者登録
     Route::post('/admin/shop-manager', [AdminController::class, 'createShopManager'])->name('admin.create.shop_manager');
+    // 画像保存機能
+    Route::get('/admin/save-image', [AdminController::class, 'saveImage'])->name('admin.save.image');
 });
 
 

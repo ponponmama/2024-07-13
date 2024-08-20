@@ -70,22 +70,22 @@
                 </div>
             </div>
                 <div class="button-container">
-                    <button class=" register-button" type="submit">ShopManager登録</button>
+                    <button class=" register-button" type="submit">店舗代表者登録</button>
                 </div>
         </form>
     </div>
     <div class="registration-form-low">
         <div class="registration-text-box">
-            <span class="registration-text-low">新規店舗の登録</span>
+            <span class="registration-text-low">新規店舗との登録</span>
         </div>    
-        <form action="{{ route('admin.create.shop') }}" method="POST" class="create-shop-form">
+        <form action="{{ route('admin.create.shop') }}" method="POST" class="create-shop-form" enctype="multipart/form-data">
             @csrf
             <div class="input-group">
                 <div class="icon-container">
                     <img src="{{ asset('images/shop.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="shop_name" placeholder="Shop Name">
+                    <input type="text" name="shop_name" placeholder="Shop Name" value="{{ old('shop_name') }}">
                 </div>
                 <div class="form__error">
                     @error('shop_id')
@@ -98,7 +98,7 @@
                     <img src="{{ asset('images/description.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="description" placeholder="Description">
+                    <textarea name="description" placeholder="Description" class="description-text">{{ old('description') }}</textarea>
                 </div>
                 <div class="form__error">
                     @error('description')
@@ -111,7 +111,7 @@
                     <img src="{{ asset('images/genre.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="genre" placeholder="Genre">
+                    <input type="text" name="genre" placeholder="Genre" value="{{ old('genre') }}">
                 </div>
                 <div class="form__error">
                     @error('genre')
@@ -124,7 +124,7 @@
                     <img src="{{ asset('images/area.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="area" placeholder="Area">
+                    <input type="text" name="area" placeholder="Area" value="{{ old('area') }}">
                 </div>
                 <div class="form__error">
                     @error('area')
@@ -162,7 +162,6 @@
                     {{ $message }}
                 @enderror
             </div>
-            
             <div class="input-group-time">
                 <div class="icon-container">
                     <img src="{{ asset('images/clock.svg') }}" alt="">
@@ -177,8 +176,47 @@
                     {{ $message }}
                 @enderror
             </div>
+            <div class="input-group">
+                <div class="icon-container">
+                    <img src="{{ asset('images/human.png') }}" alt="">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="user_name" name="user_name" placeholder="Username" value="{{ old('user_name') }}">
+                </div>
+                <div class="form__error">
+                    @error('user_name')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="icon-container">
+                    <img src="{{ asset('images/mail.png') }}" alt="">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                </div>
+                <div class="form__error">
+                    @error('email')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="icon-container">
+                    <img src="{{ asset('images/key.png') }}" alt="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" value="{{ old('password') }}">
+                </div>
+                <div class="form__error">
+                    @error('password')
+                        {{ $message }}
+                    @enderror
+                </div>
+            </div>
             <div class="button-container">   
-                <button class="new-register-button" type="submit">新店舗を登録</button>
+                <button class="new-register-button" type="submit">新店舗と代表者を登録</button>
             </div>
         </form>
     </div>
