@@ -184,12 +184,17 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx
 
 例えば、以下のように入力します。
 
-Country Name (2 letter code) [AU]: JP
-State or Province Name (full name) [Some-State]: 都道府県
-Locality Name (eg, city) []: 市町村
-Organization Name (eg, company) [Internet Widgits Pty Ltd]: 会社名等
-Common Name (e.g. server FQDN or YOUR name) []: ponponmama　名前
-Email Address []: yourmail@gmail.com　　メールアドレス
+### SSL証明書生成のための情報入力例
+
+- **Country Name (2 letter code)**: `JP` (日本)
+- **State or Province Name (full name)**: `Hyogo` (兵庫県)
+- **Locality Name (city)**: `Kobe` (神戸市)
+- **Organization Name (company)**: `Rese Inc.` (リーズ株式会社)
+- **Organizational Unit Name (eg, section) []**:無い場合は空白でもOK
+- **Common Name (server FQDN or YOUR name)**: `localhost` (開発環境やテスト環境での一般的な設定)
+- **Email Address**: `yourmail@gmail.com` (連絡先メールアドレス)
+
+これらの情報は、SSL証明書を生成する際に必要とされるものです。実際に証明書を生成する際には、適切な値を入力してください。
 
 このコマンドにより、`nginx.key` (秘密鍵) と `nginx.crt` (公開証明書) が生成されます。生成時には上記のようにいくつかの質問に答える必要があります。
 
