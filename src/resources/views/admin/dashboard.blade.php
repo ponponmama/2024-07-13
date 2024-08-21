@@ -22,7 +22,14 @@
                     <img src="{{ asset('images/shop.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="number" id="shop_id" name="shop_id" placeholder="Shop ID" value="{{ old('shop_id') }}" required>
+                    <select id="shop_id" name="shop_id" required>
+                        <option value="">店舗を選択してください</option>
+                        @foreach ($shops ?? [] as $shop)
+                            <option value="{{ $shop->id }}" {{ old('shop_id') == $shop->id ? 'selected' : '' }}>
+                            {{ $shop->shop_name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form__error">
                     @error('shop_id')
@@ -76,7 +83,7 @@
     </div>
     <div class="registration-form-low">
         <div class="registration-text-box">
-            <span class="registration-text-low">新規店舗との登録</span>
+            <span class="registration-text-low">新規店舗登録</span>
         </div>    
         <form action="{{ route('admin.create.shop') }}" method="POST" class="create-shop-form" enctype="multipart/form-data">
             @csrf
@@ -139,7 +146,7 @@
                 <div class="form-group">
                     <input type="file" id="image" name="image" class="image" style="display: none;">
                     <label for="image" class="custom-file-upload">
-                        <i class="fa fa-cloud-upload"></i>写真を選ぶ
+                        <i class="fa fa-cloud-upload"><span id="file-name"></span></i>写真を選ぶ
                     </label>
                 </div>
                 <div class="form__error">
@@ -176,49 +183,17 @@
                     {{ $message }}
                 @enderror
             </div>
-            <div class="input-group">
-                <div class="icon-container">
-                    <img src="{{ asset('images/human.png') }}" alt="">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="user_name" name="user_name" placeholder="Username" value="{{ old('user_name') }}">
-                </div>
-                <div class="form__error">
-                    @error('user_name')
-                        {{ $message }}
-                    @enderror
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="icon-container">
-                    <img src="{{ asset('images/mail.png') }}" alt="">
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
-                </div>
-                <div class="form__error">
-                    @error('email')
-                        {{ $message }}
-                    @enderror
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="icon-container">
-                    <img src="{{ asset('images/key.png') }}" alt="">
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" value="{{ old('password') }}">
-                </div>
-                <div class="form__error">
-                    @error('password')
-                        {{ $message }}
-                    @enderror
-                </div>
-            </div>
             <div class="button-container">   
-                <button class="new-register-button" type="submit">新店舗と代表者を登録</button>
+                <button class="new-register-button" type="submit">新店舗登録</button>
             </div>
         </form>
     </div>
 </div>
+<script>
+document.getElementById('image').addEventListener('change', function() {
+    var fileName = this.files[0].name;
+    var fileLabel = document.getElementById('file-name');
+    fileLabel.textContent = fileName;
+});
+</script>
 @endsection
