@@ -47,15 +47,20 @@
         </div>
         <div class="business_hours_group">
             <label for="image">写真</label>
-            <input type="file" id="image" name="image" class="image">
+            <input type="file" id="image" name="image" class="image" style="display: none;">
+            <label for="image" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"><span id="file-name"></span></i>写真を選ぶ
+            </label>
         </div>
-        <button type="submit" class="up_date_button">更新する</button>
+        <div class="up_date_button_box">
+            <button type="submit" class="up_date_button">更新する</button>
+        </div>
     </form>
     <span class="confirm_text">更新された情報はこちらで確認できます</span>
     <div class="image-section">
-        <img src="{{ asset($shop->image) }}" alt="{{ $shop->shop_name }}">
-            <p class="shop-guide">＃{{ $shop->area }}  ＃{{ $shop->genre }}</p>
-            <p class="description">{{ $shop->description }}</p>
+        <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->shop_name }}">
+        <p class="shop-guide">＃{{ $shop->area }}  ＃{{ $shop->genre }}</p>
+        <p class="description">{{ $shop->description }}</p>
     </div>
     <p class="business_hours_up">営業時間:{{ \Carbon\Carbon::parse($shop->open_time)->format('H:i') }}～{{ \Carbon\Carbon::parse($shop->close_time)->format('H:i') }}</p>
 </div>

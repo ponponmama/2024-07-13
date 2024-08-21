@@ -56,6 +56,10 @@ class AdminController extends Controller
             'shop_id' => $validated['shop_id'],
         ]);
 
+        $shop = Shop::find($validated['shop_id']);
+        $shop->user_id = $user->id;
+        $shop->save();
+
         return redirect()->route('admin.dashboard')->with('success', '新しいShopManagerが正常に登録されました');
     }
 

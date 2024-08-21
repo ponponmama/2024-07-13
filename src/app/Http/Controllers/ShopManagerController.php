@@ -49,7 +49,7 @@ class ShopManagerController extends Controller
         \Log::info('Close Time:', ['close_time' => $request->close_time]);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $path = $request->image->store('public/images');
+            $path = $request->image->store('images', 'public');
             $data['image'] = $path;
         }
 
@@ -72,7 +72,7 @@ class ShopManagerController extends Controller
     public function showReservations()
     {
         // ログインしているユーザーが管理する店舗のIDを取得
-        $shopId = Auth::user()->shop_id;  // この部分は適宜調整が必要です
+        $shopId = Auth::user()->shop_id;
 
         // その店舗の予約情報を取得
         $reservations = Reservation::where('shop_id', $shopId)->get();

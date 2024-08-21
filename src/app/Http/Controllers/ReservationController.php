@@ -104,10 +104,10 @@ class ReservationController extends Controller
         $reservation->save();
 
         // QRコードを生成し、ファイルに保存
-        $qrCodePath = 'qr_codes/' . $reservation->id . '.png'; // 保存パスを指定
-        QrCode::format('png')->size(150)->generate('Reservation ID: ' . $reservation->id, public_path($qrCodePath));
+        $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.png'; // 保存パスを指定
+        QrCode::format('png')->size(150)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.png'));
 
-        $reservation->qr_code = $qrCodePath; // データベースにファイルパスを保存
+        $reservation->qr_code = $qrCodePath;
         $reservation->save();
 
         // メール送信
@@ -181,8 +181,9 @@ class ReservationController extends Controller
         $reservation->save();
 
         // QRコードを再生成（必要に応じて）
-        $qrCodePath = 'qr_codes/' . $reservation->id . '.png';
-        QrCode::format('png')->size(80)->generate('Reservation ID: ' . $reservation->id, public_path($qrCodePath));
+        $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.png'; // 保存パスを指定
+        QrCode::format('png')->size(80)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.png'));
+
         $reservation->qr_code = $qrCodePath;
         $reservation->save();
 

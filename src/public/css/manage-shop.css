@@ -142,6 +142,10 @@ label {
     margin: 10px 0;
 }
 
+.up_date_button_box {
+    width: 100%;
+    text-align: center;
+}
 
 .up_date_button {
     width: 40%;
@@ -195,13 +199,22 @@ label {
 }
 
 .business_hours_up {
-    width: 80%;
+    width: 70%;
     padding: 8px;
     font-size: 1.2rem;
     text-align: center;
     margin: 18px 2px;
     border-radius: 4px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.61);
+}
+
+.custom-file-upload {
+    border: 1px solid #7a7a7a;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
 }
 
 @media (max-width: 768px) {

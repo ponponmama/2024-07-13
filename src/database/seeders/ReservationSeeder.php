@@ -43,7 +43,7 @@ class ReservationSeeder extends Seeder
 
                 $lunchDateTime = now()->addDays(rand(1, 30))->hour(12)->minute(0)->second(0);
                 $lunchQrCodePath = 'qr_codes/lunch_' . $user->id . '_' . $shop->id . '_' . $lunchDateTime->format('YmdHis') . '.png';
-                QrCode::format('png')->size(100)->generate('Reservation ID: ' . $user->id, public_path($lunchQrCodePath));
+                QrCode::format('png')->size(150)->generate('Reservation ID: ' . $user->id, storage_path('app/public/' . $lunchQrCodePath));
 
                 // ランチ予約を作成
                 $lunchReservation = Reservation::create([
@@ -56,7 +56,7 @@ class ReservationSeeder extends Seeder
                 // 予約IDを使用してQRコードを生成
                 $lunchQrCodePath = 'qr_codes/lunch_' . $lunchReservation->id . '.png';
                 $qrCodeContent = 'Reservation ID: ' . $lunchReservation->id;
-                QrCode::format('png')->size(150)->generate($qrCodeContent, public_path($lunchQrCodePath));
+                QrCode::format('png')->size(150)->generate($qrCodeContent, storage_path('app/public/' . $lunchQrCodePath));
                 $lunchReservation->qr_code = $lunchQrCodePath;
                 $lunchReservation->save();
 
@@ -76,7 +76,7 @@ class ReservationSeeder extends Seeder
                 // 予約IDを使用してQRコードを生成
                 $dinnerQrCodePath = 'qr_codes/dinner_' . $dinnerReservation->id . '.png';
                 $qrCodeContent = 'Reservation ID: ' . $dinnerReservation->id;
-                QrCode::format('png')->size(100)->generate($qrCodeContent, public_path($dinnerQrCodePath));
+                QrCode::format('png')->size(150)->generate($qrCodeContent, storage_path('app/public/' . $dinnerQrCodePath));
                 $dinnerReservation->qr_code = $dinnerQrCodePath;
                 $dinnerReservation->save();
             }
