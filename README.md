@@ -34,6 +34,7 @@
 - 20〜30代の社会人
 
 ## システム要件
+
 - **開発言語**: PHP
 - **フレームワーク**: Laravel
 - **データベース**: MySQL
@@ -41,6 +42,7 @@
 
 
 ## 使用技術
+
 - **フロントエンド**: HTML, CSS, JavaScript
 - **バックエンド**: PHP, Laravel
 - **データベース**: MySQL
@@ -86,91 +88,86 @@
 ###クローン作製手順
 
 1. GitHubリポジトリのクローン
+```Bash
 
-https://github.com/ponponmama/20240713-erika_hara-rese.git
+git clone https://github.com/ponponmama/20240713-erika_hara-rese.git
+cd 20240713-erika_hara-rese
+```
 
 2. 必要なパッケージのインストール
 
-Bash　
-
+```Bash　
 sudo apt-get update
-
 sudo apt-get install php-curl
+```
 
 
-PHPを再起動(必要に応じて)
+- PHPを再起動(必要に応じて)
 
-Bash
-
+```Bash
 docker-compose up --build
+```
 
-
-
-php.ini ファイルで curl 拡張機能を有効にする
+- php.ini ファイルで curl 拡張機能を有効にする
 
 extension=curl
 
 
 - curl拡張機能が正しくロードされているか確認
 
-Bash
-
+```Bash
 php -m | grep curl
-
+```
 
 3. Composerを使用した依存関係のインストール
 
-Bash
-
-   composer install
-
+```Bash
+composer install
+```
 
 4. 環境設定ファイルの設定
-.env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
 
-Bash
+- .env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
 
-   cp .env.example .env
-
+```Bash
+cp .env.example .env
+```
 
 5. アプリケーションキーの生成
 
-Bash
-
-   php artisan key:generate
-
+```Bash
+php artisan key:generate
+```
 
 6.データベースのマイグレーション
 
-Bash
-
-   php artisan migrate
+```Bash
+php artisan migrate
+```
 
 7.データベースシーダーの実行
 
-Bash
-
+```Bash
 php artisan db:seed
-
-
+```
 
 8.ローカルサーバーの起動
 
-Bash
-
+```Bash
 docker-compose up --build
+```
 
 
 
 
 #### HTTPS 証明書の発行方法
-QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
+- QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
 HTTPS通信を行うためにはSSL証明書が必要です。以下のコマンドを使用して自己署名のSSL証明書を生成できます。
 githubクローンには下記の証明書は入っていない為、作成してください。
 
-Bash
-
+```Bash
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt
+```
 
 このコマンド実行時には、以下のような情報を入力します。
 
