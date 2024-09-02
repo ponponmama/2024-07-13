@@ -25,6 +25,16 @@ class Shop extends Model
         return $this->belongsToMany(User::class, 'favorites', 'shop_id', 'user_id');
     }
 
+    public function areas()
+    {
+        return $this->belongsToMany(Area::class);
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
+
     public static function getBusinessHoursForDate($date)
     {
         $shop = self::whereDate('created_at', '=', $date)->first();
