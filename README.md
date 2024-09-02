@@ -238,7 +238,7 @@ protected function schedule(Schedule $schedule)
 
 ### メール設定
 
-プロジェクトでメール送信機能を使用するには、`.env` ファイルにメールサーバーの設定を行う必要があります。`.env.example` ファイルをコピーして `.env` ファイルを作成し、以下の設定を適切に更新してください。
+プロジェクトでは開発環境でのメール送信のテストに Mailtrap を使用しています。以下の設定を `.env` ファイルに追加してください。これにより、開発中のメール送信を安全にテストすることができます。
 
 - `MAIL_MAILER`: メールドライバー（例: smtp, sendmail）
 - `MAIL_HOST`: メールサーバーのホスト名
@@ -248,16 +248,40 @@ protected function schedule(Schedule $schedule)
 - `MAIL_ENCRYPTION`: メール送信の暗号化方式（例: tls, ssl）
 - `MAIL_FROM_NAME`: メール送信時の差出人名（環境変数 `APP_NAME` を使用する場合もあり）
 
-これらの設定を行うことで、アプリケーションからのメール送信が可能になります。
+plaintext
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_mailtrap_username # Mailtrapのユーザー名をここに入力
+MAIL_PASSWORD=your_mailtrap_password # Mailtrapのパスワードをここに入力
+MAIL_ENCRYPTION=tls
+MAIL_FROM_NAME="${APP_NAME}" # アプリケーション名を使用する場合
+MAIL_LOG_CHANNEL=stack
+
+この設定を適用後、アプリケーションからのメールは Mailtrap の仮想SMTPサーバーを通じて送信され、実際には配信されずに Mailtrap のダッシュボードで確認することができます。
 
 ### Stripe 設定
 
-プロジェクトで Stripe を使用するには、`.env` ファイルに Stripe の API キーを設定する必要があります。`.env.example` ファイルをコピーして `.env` ファイルを作成し、以下の設定を適切に更新してください。
+プロジェクトで決済処理を行うために Stripe を使用します。Stripe の API キーを設定することで、安全に決済を処理できます。以下の手順に従って設定を行ってください。
 
-- `STRIPE_KEY`: Stripe の公開可能キー（Public key）
-- `STRIPE_SECRET`: Stripe の秘密キー（Secret key）
+1. Stripe にアクセスし、アカウントを作成またはログインします。
+2. ダッシュボードから API キーを取得します。必要なキーは以下の二つです：
+   - `STRIPE_KEY`: Stripe の公開可能キー（Public key）
+   - `STRIPE_SECRET`: Stripe の秘密キー（Secret key）
+3. `.env.example` ファイルを `.env` としてコピーします。
+4. コピーした `.env` ファイルを開き、以下の環境変数を更新します：
 
-これらのキーは Stripe のダッシュボードから取得できます。セキュリティを保つために、これらのキーを公開リポジトリには絶対にアップロードしないでください。
+   ```plaintext
+   STRIPE_KEY=ここに公開可能キーを貼り付ける
+   STRIPE_SECRET=ここに秘密キーを貼り付ける
+   ```
+
+### 注意事項
+- **セキュリティのため、Stripe の API キーを公開リポジトリにアップロードしないでください。** これらのキーはあなたのアカウントと直接関連しており、不正利用される可能性があります。
+- 環境変数を使用することで、開発環境と本番環境で異なるキーを簡単に切り替えることができます。
+
+この設定により、アプリケーションは Stripe を介して安全に決済処理を行うことができます。
 
 
 ### URL

@@ -104,8 +104,8 @@ class ReservationController extends Controller
         $reservation->save();
 
         // QRコードを生成し、ファイルに保存
-        $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.png'; // 保存パスを指定
-        QrCode::format('png')->size(150)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.png'));
+        $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.svg'; // 保存パスを指定
+        QrCode::format('svg')->size(100)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.svg'));
 
         $reservation->qr_code = $qrCodePath;
         $reservation->save();
@@ -167,7 +167,7 @@ class ReservationController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'date' => 'required|date_format:Y-m-d',
+            'date' => 'required|date_format:Y-m-d|after_or_equal:' . Carbon::today()->toDateString(),
             'time' => 'required|date_format:H:i',
             'number' => 'required|integer|min:1'
         ]);
@@ -181,8 +181,8 @@ class ReservationController extends Controller
         $reservation->save();
 
         // QRコードを再生成（必要に応じて）
-        $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.png'; // 保存パスを指定
-        QrCode::format('png')->size(80)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.png'));
+        $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.svg'; // 保存パスを指定
+        QrCode::format('svg')->size(100)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.svg'));
 
         $reservation->qr_code = $qrCodePath;
         $reservation->save();
@@ -216,6 +216,7 @@ class ReservationController extends Controller
         $reservation->delete();
         return redirect()->route('mypage')->with('success', '予約が削除されました。');
     }
+
     //予約idをQRコードで取得し予約情報を検索し、JSON形式で返す。予約ID、予約日時、人数、顧客名、顧客のメールアドレスを含む
     public function getReservationById($id)
     {
