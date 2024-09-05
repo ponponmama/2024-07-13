@@ -14,9 +14,9 @@ class CreateShopsGenresTable extends Migration
     public function up()
     {
         Schema::create('shops_genres', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
+            $table->primary(['shop_id', 'genre_id']);
         });
     }
 

@@ -27,12 +27,12 @@ class Shop extends Model
 
     public function areas()
     {
-        return $this->belongsToMany(Area::class);
+        return $this->belongsToMany(Area::class,'shops_areas');
     }
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsToMany(Genre::class,'shops_genres');
     }
 
     public static function getBusinessHoursForDate($date)

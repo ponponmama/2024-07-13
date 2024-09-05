@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use Carbon\Carbon;
 
 class ShopsTableSeeder extends Seeder
@@ -45,17 +47,34 @@ class ShopsTableSeeder extends Seeder
             ['木船','大阪府','寿司','毎日店主自ら市場等に出向き、厳選した魚介類が、お鮨をはじめとした繊細な料理に仕立てられます。また、選りすぐりの種類豊富なドリンクもご用意しております。','images/sushi.jpg', '11:00', '22:00']
         ];
 
+        $areaIds = Area::pluck('id', 'area_name');
+        $genreIds = Genre::pluck('id', 'genre_name');
+
         foreach ($shopNames as $index => $shopName) {
+            if (count($shopName) !== 7) {
+                echo "インデックス {$index} の要素数: " . count($shopName) . "\n";
+                throw new \Exception("インデックス {$index} のショップデータが不完全です。");
+            }
+
             $manager = User::factory()->shopManager($index + 1)->create();  // ショップマネージャーを作成
-            Shop::create([
+            $shop = Shop::create([
                 'user_id' => $manager->id,
                 'shop_name' => $shopName[0],
-                'area' => $shopName[1],
-                'genre' => $shopName[2],
                 'description' => $shopName[3],
                 'image' => $shopName[4],
                 'open_time' => $shopName[5],
                 'close_time' => $shopName[6],
+            ]);
+
+            // 地域とジャンルの関連付け
+            DB::table('shops_areas')->insert([
+                'shop_id' => $shop->id,
+                'area_id' => $areaIds[$shopName[1]]
+            ]);
+
+            DB::table('shops_genres')->insert([
+                'shop_id' => $shop->id,
+                'genre_id' => $genreIds[$shopName[2]]
             ]);
         }
     }

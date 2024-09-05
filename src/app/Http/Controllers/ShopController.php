@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use App\Services\ShopService;
@@ -55,29 +57,27 @@ class ShopController extends Controller
     // 店舗一覧を表示,検索フォームに渡す。
     public function index(Request $request)
     {
-        $query = Shop::query();
+        $query = Shop::with(['areas', 'genres']); // 関連データを事前にロード
 
-        $filterApplied = false;
-
-            if ($request->has('search-area') && $request->input('search-area') != '') {
-            $query->where('area', $request->input('search-area'));
-            $filterApplied = true;
+        if ($request->has('search-area') && $request->input('search-area') != '') {
+            $query->whereHas('areas', function ($q) use ($request) {
+                $q->where('id', $request->input('search-area'));
+            });
         }
 
         if ($request->has('search-genre') && $request->input('search-genre') != '') {
-            $query->where('genre', $request->input('search-genre'));
-            $filterApplied = true;
+            $query->whereHas('genres', function ($q) use ($request) {
+                $q->where('id', $request->input('search-genre'));
+            });
         }
 
         if ($request->has('search-shop__name') && $request->input('search-shop__name') != '') {
             $query->where('shop_name', 'like', '%' . $request->input('search-shop__name') . '%');
-            $filterApplied = true;
         }
 
-        $shops = $filterApplied ? $query->get() : Shop::all();
-
-        $areas = Shop::distinct()->pluck('area');
-        $genres = Shop::distinct()->pluck('genre');
+        $shops = $query->get();
+        $areas = Area::all();
+        $genres = Genre::all();
 
         return view('shops.index', ['shops' => $shops, 'areas' => $areas, 'genres' => $genres]);
     }

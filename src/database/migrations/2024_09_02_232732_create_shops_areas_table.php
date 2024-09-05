@@ -14,9 +14,9 @@ class CreateShopsAreasTable extends Migration
     public function up()
     {
         Schema::create('shops_areas', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');
+            $table->primary(['shop_id', 'area_id']);
         });
     }
 
