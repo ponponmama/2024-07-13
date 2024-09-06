@@ -250,14 +250,14 @@ protected function schedule(Schedule $schedule)
 
 plaintext
 
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=your_mailtrap_username # Mailtrapのユーザー名をここに入力
-MAIL_PASSWORD=your_mailtrap_password # Mailtrapのパスワードをここに入力
-MAIL_ENCRYPTION=tls
-MAIL_FROM_NAME="${APP_NAME}" # アプリケーション名を使用する場合
-MAIL_LOG_CHANNEL=stack
+MAIL_MAILER=smtp  
+MAIL_HOST=sandbox.smtp.mailtrap.io  
+MAIL_PORT=2525  
+MAIL_USERNAME=your_mailtrap_username # Mailtrapのユーザー名をここに入力  
+MAIL_PASSWORD=your_mailtrap_password # Mailtrapのパスワードをここに入力  
+MAIL_ENCRYPTION=tls  
+MAIL_FROM_NAME="${APP_NAME}" # アプリケーション名を使用する場合  
+MAIL_LOG_CHANNEL=stack  
 
 この設定を適用後、アプリケーションからのメールは Mailtrap の仮想SMTPサーバーを通じて送信され、実際には配信されずに Mailtrap のダッシュボードで確認することができます。
 
