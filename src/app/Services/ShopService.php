@@ -15,6 +15,9 @@ class ShopService
         $start = new Carbon($date . ' ' . $openTime);
         $end = new Carbon($date . ' ' . $closeTime);
 
+        // 営業終了時間の30分前を設定
+        $end->subMinutes(30);
+
         if ($selectedDate->format('Y-m-d') != $currentDate) {
             // 選択された日付が現在の日付と異なる場合、その日の全営業時間を表示
             while ($start < $end) {

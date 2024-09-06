@@ -111,7 +111,14 @@
                         <img src="{{ asset($favorite->image) }}" alt="{{ $favorite->shop_name }}">
                         <div class="shop_info">
                             <h3 class="shop-name">{{ $favorite->shop_name }}</h3>
-                            <p class="shop-guide">＃{{ $favorite->area }}  ＃{{ $favorite->genre }}</p>
+                            <p class="shop-guide">
+                                @foreach ($favorite->areas as $area)
+                                    ＃{{ $area->area_name }}
+                                @endforeach
+                                @foreach ($favorite->genres as $genre)
+                                    ＃{{ $genre->genre_name }}
+                                @endforeach
+                            </p>
                             <div class="button-container">
                                 <a href="{{ route('shop.details', ['id' => $favorite->id]) }}" class="shop-detail">詳しくみる</a>
                                 @auth

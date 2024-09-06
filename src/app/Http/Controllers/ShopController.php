@@ -21,7 +21,7 @@ class ShopController extends Controller
         $this->shopService = $shopService;
     }
 
-    // 店舗の詳細と予約ページを表示
+    // done.blade.phpから戻った時の店舗詳細表示用
     public function shopDetails(Request $request,$id)
     {
         Log::info('Received date: ' . $request->input('date'));
@@ -31,15 +31,18 @@ class ShopController extends Controller
         $inputDate = $request->input('date');
         $date = $inputDate ? new Carbon($inputDate) : $current;
 
-        // ユーザーが選択した日付が現在の日付より前の場合、翌日の日付を使用
-        if ($date->lessThan($current)) {
-            $date = $current->copy()->addDay();
-        }
-
         $openTime = $shop->open_time;
         $closeTime = $shop->close_time;
         $start = new Carbon($date->format('Y-m-d') . ' ' . $openTime);
         $end = new Carbon($date->format('Y-m-d') . ' ' . $closeTime);
+
+        // 現在の時間が営業終了時間と同じかそれを過ぎているかチェック
+        if ($current->greaterThanOrEqualTo($end)) {
+            // 営業時間を過ぎている場合、日付を次の日に設定
+            $date = $current->copy()->addDay();
+        }
+
+        Log::info('Received date: ' . $date->toDateString()); // 日付をログに記録
 
         // 営業時間の取得
         $times = $this->shopService->getBusinessHours($openTime, $closeTime, $date->format('Y-m-d'), $current);

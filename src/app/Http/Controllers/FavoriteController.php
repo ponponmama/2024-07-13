@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
+    //お気に入りの追加
     public function favorite(Shop $shop)
     {
         $user = Auth::user();
@@ -31,6 +32,7 @@ class FavoriteController extends Controller
         return back()->with('success', 'お気に入りに追加しました！');
     }
 
+    //お気に入りの解除
     public function unfavorite(Shop $shop)
     {
         $user = Auth::user();

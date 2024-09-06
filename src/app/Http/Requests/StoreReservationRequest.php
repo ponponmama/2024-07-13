@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
 
 class StoreReservationRequest extends FormRequest
 {
@@ -25,7 +26,16 @@ class StoreReservationRequest extends FormRequest
     {
         return [
             'date' => 'required|date|after_or_equal:today',
-            'time' => 'required|date_format:H:i',
+            'time' => [
+                'required',
+                'date_format:H:i',
+                function ($attribute, $value, $fail) {
+                    $dateInput = $this->input('date') . ' ' . $value;
+                    if ($this->input('date') == Carbon::today()->toDateString() && Carbon::createFromFormat('Y-m-d H:i', $dateInput) < Carbon::now()) {
+                        $fail('指定された時間は過去の時間です。');
+                    }
+                },
+            ],
             'number' => 'required|integer|min:1'
         ];
     }

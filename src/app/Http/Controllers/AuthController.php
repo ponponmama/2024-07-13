@@ -35,7 +35,7 @@ namespace App\Http\Controllers;
        return redirect()->route('verification.notice');
     }
 
-        // Thanksページを表示
+    // Thanksページを表示
     public function showThanksPage()
     {
         return view('auth.thanks');
@@ -104,6 +104,7 @@ namespace App\Http\Controllers;
         return redirect('/login');
     }
 
+    //ユーザーのロールに基づいて適切なダッシュボードにリダイレクト
     protected function authenticated(Request $request, $user)
     {
         if ($user->role === 1) {

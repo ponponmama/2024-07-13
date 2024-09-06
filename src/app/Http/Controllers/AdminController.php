@@ -104,7 +104,6 @@ class AdminController extends Controller
     
     public function destroy(User $user)
     {
-        // 削除前に適切な権限があるか確認
         if (!auth()->user()->can('delete', $user)) {
            abort(403);
         }

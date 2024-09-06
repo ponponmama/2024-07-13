@@ -11,6 +11,6 @@ class Area extends Model
 
     public function shops()
     {
-        return $this->hasMany(Shop::class, 'shops_areas', 'area_id', 'shop_id');
+        return $this->belongsToMany(Shop::class, 'shops_areas', 'area_id', 'shop_id');
     }
 }

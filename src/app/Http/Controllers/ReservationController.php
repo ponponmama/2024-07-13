@@ -88,13 +88,18 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReservationRequest $request)
+    //detailページからのデータを使用して予約保存し予約完了ページへリダイレクト
+     public function store(StoreReservationRequest $request)
     {
-        Log::info('Store method called');
+        Log::info('Store method called');// メソッドの呼び出しをログに記録
+        $current = Carbon::now(); // 現在の日時を取得して $current に代入
+
+        // リクエストから店舗IDを取得し、店舗情報を検索
         $shop = Shop::find($request->shop_id);
+        // リクエストから取得した日付と時間を組み合わせてCarbonオブジェクトを生成
         $reservationDateTime = Carbon::createFromFormat('Y-m-d H:i', $request->date . ' ' . $request->time);
 
-        // 予約データの保存
+        // 新しい予約を作成し、データベースに保存
         $reservation = new Reservation();
         $reservation->shop_id = $request->shop_id;
         $reservation->reservation_datetime = $reservationDateTime->format('Y-m-d H:i:s');
@@ -103,21 +108,23 @@ class ReservationController extends Controller
 
         $reservation->save();
 
-        // QRコードを生成し、ファイルに保存
+        // QRコードを生成し、指定のパスにファイルとして保存
         $qrCodePath = 'storage/qr_codes/' . $reservation->id . '.svg'; // 保存パスを指定
         QrCode::format('svg')->size(100)->generate('Reservation ID: ' . $reservation->id, storage_path('app/public/qr_codes/' . $reservation->id . '.svg'));
 
         $reservation->qr_code = $qrCodePath;
-        $reservation->save();
+        $reservation->save(); // QRコードパスを更新して再保存
 
-        // メール送信
+        // この処理では、現在認証されているユーザーのメールアドレスに対して、予約の詳細を含むメールを送信します。
         $user = auth()->user(); // ログインしているユーザー情報を取得
         if ($user) {
             Mail::to($user->email)->send(new ReservationNotification($user, $reservation));
         } else {
+            // 送信に失敗した場合は、エラーログにその情報を記録します。
             Log::error('User not found for email sending.');
         }
 
+        // 予約情報をセッションに保存
         session()->put('reservation_details', $reservation);
         session()->put('last_visited_shop_id', $reservation->shop_id);
 
@@ -137,11 +144,35 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //詳しく見るボタンクリックし店舗の詳細と予約ページを表示
     public function show($shopId)
     {
         $shop = Shop::find($shopId);
+        $current = Carbon::now();
+        $date = $current->format('Y-m-d');
+        $openTime = $shop->open_time;
+        $closeTime = $shop->close_time;
+        $end = new Carbon($date . ' ' . $closeTime);
 
-        return view('reservation', ['shop' => $shop]);
+        Log::info("Current time: " . $current->toDateTimeString()); // 現在の時間をログに記録
+        Log::info("End time: " . $end->toDateTimeString()); // 営業終了時間をログに記録
+
+
+        // 現在の時間が営業終了時間を過ぎているかチェック
+        if ($current->greaterThan($end)) {
+            // 営業時間を過ぎている場合、日付を次の日に設定
+            $date = $current->addDay()->format('Y-m-d');
+        }
+
+        Log::info("New date: " . $date); // 更新された日付をログに記録
+
+        $times = $this->shopService->getBusinessHours($openTime, $closeTime, $date, $current);
+
+        return view('reservation', [
+            'shop' => $shop,
+            'date' => $date,
+            'times' => $times
+        ]);
     }
 
     /**
@@ -163,7 +194,7 @@ class ReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //マイページで予約の日時変更と削除
+    //マイページで予約の日時変更と削除
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -210,6 +241,7 @@ class ReservationController extends Controller
         return view('reservations.my', ['reservations' => $reservations]); // ビューにデータを渡す
     } 
 
+    //マイページで予約の削除処理
     public function destroy($id)
     {
         $reservation = Reservation::findOrFail($id);

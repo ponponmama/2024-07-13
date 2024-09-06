@@ -26,7 +26,14 @@
                         </div>
                         <div class="image-section">
                             <img src="{{ asset($shop->image) }}" alt="{{ $shop->shop_name }}">
-                            <p class="shop-guide">＃{{ $shop->area }}  ＃{{ $shop->genre }}</p>
+                            <p class="shop-guide">
+                                @foreach ($shop->areas as $area)
+                                    ＃{{ $area->area_name }}
+                                @endforeach
+                                @foreach ($shop->genres as $genre)
+                                    ＃{{ $genre->genre_name }}
+                                @endforeach
+                            </p>
                             <p class="description">{{ $shop->description }}</p>
                         </div>
                     </div>
@@ -55,7 +62,7 @@
                                         @endfor
                                     </select>
                                     <span class="custom-select-icon"></span>
-                                </div>    
+                                </div>
                             </form>
                             <div class="reservation-summary">
                                 @if(session('reservation_details'))
