@@ -18,32 +18,32 @@
                     @endif
                     @foreach ($reservations as $reservation)
                         <div class="reservation-summary">
-                            <form action="{{ route('reservations.update', $reservation->id) }}" method="POST" id="update-form-{{ $reservation->id }}">
+                            <form action="{{ route('reservations.update', $reservation->id) }}" method="POST" id="update-form-{{ $reservation->id }}" class="update_form">
                                 @csrf
                                 @method('PUT')
                                 <a href="{{ route('mypage', ['hide_reservation' => 1]) }}" class="close-button">
-                                <img src="{{ asset('images/cross.png') }}" alt="Close">
+                                <img src="{{ asset('images/cross.png') }}" alt="Close" class="cross_image">
                                 </a>
                                 <div class="reservation-summary-item">
                                     <img src="{{ asset('images/clock.svg') }}" alt="Clock Icon" class="clock-icon">
                                     <p class="reservation-summary-date">予約{{ $reservation->shop->id }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Shop</label>
+                                    <label class="label_shop_name">Shop</label>
                                     <div class="select-wrapper">
                                         <span class="summary-name">{{ $reservation->shop->shop_name }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date">Date</label>
+                                    <label for="date" class="label_date">Date</label>
                                     <div class="select-wrapper">
-                                        <input type="date" name="date" class="date-label" value="{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('Y-m-d') }}">
+                                        <input type="date" name="date" class="input_date" value="{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('Y-m-d') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="time">Time</label>
+                                    <label for="time" class="label_time">Time</label>
                                     <div class="select-wrapper">
-                                        <select id="time" name="time">
+                                        <select id="time" name="time" class="select_time">
                                             @foreach ($reservation->times as $time)
                                                 <option value="{{ $time }}"  {{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('H:i') == $time ? 'selected' : '' }}>{{ $time }}</option>
                                             @endforeach
@@ -52,9 +52,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Number</label>
+                                    <label class="label_number">Number</label>
                                     <div class="select-wrapper" >
-                                        <select id="number" name="number">
+                                        <select id="number" name="number" class="select_number">
                                             @for ($i = 1; $i <= 20; $i++)
                                                 <option value="{{ $i }}" {{ $reservation->number == $i ? 'selected' : '' }}>{{ $i }}人</option>
                                             @endfor
@@ -65,7 +65,7 @@
                             </form>
                             <div class="reservation-button-container">
                                 <div class="edit-button-container">
-                                    <button type="submit" class="edit-reservation-button" form="update-form-{{ $reservation->id }}">変更</button>
+                                    <button type="submit" class="edit-reservation-button" form="update-form-{{ $reservation->id }}" class="edit-reservation-button">変更</button>
                                 </div>
                                 <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" class="delete-form">
                                     @csrf
@@ -74,17 +74,17 @@
                                 </form>
                             </div>
                             <div class="qr-code-container">
-                                <img src="{{ asset($reservation->qr_code) }}" alt="QR Code for Reservation {{ $reservation->id }}">
+                                <img src="{{ asset($reservation->qr_code) }}" alt="QR Code for Reservation {{ $reservation->id }}" class="qr_code_image">
                             </div>
                         </div>
                         <div class="reviews-form">
-                            <form action="{{ route('reviews.store') }}" method="POST">
+                            <form action="{{ route('reviews.store') }}" method="POST" class="store_form">
                                 @csrf
                                 <input type="hidden" name="shop_id" value="{{ $last_visited_shop_id }}">
                                 <div class="rating-group">
-                                    <label for="rating">評価</label>
+                                    <label for="rating" class="label_rating">評価</label>
                                     <div class="select-wrapper">
-                                        <select name="rating" id="rating" class="rating">
+                                        <select name="rating" id="rating" class="select_rating">
                                             @for ($i = 1; $i <= 5; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
@@ -93,8 +93,8 @@
                                     </div>
                                 </div>
                                 <div class="rating-group">
-                                    <label for="comment">コメント</label>
-                                    <textarea name="comment" id="comment" required></textarea>
+                                    <label for="comment" class="label_comment">コメント</label>
+                                    <textarea name="comment" id="comment" class="text_comment"></textarea>
                                 </div>
                                 <button type="submit" class="review-button">レビューを投稿</button>
                             </form>
@@ -108,7 +108,7 @@
             <div class="favorite-shops">
                 @foreach ($favorites as $favorite)
                     <div class="shop_card">
-                        <img src="{{ asset($favorite->image) }}" alt="{{ $favorite->shop_name }}">
+                        <img src="{{ asset($favorite->image) }}" alt="{{ $favorite->shop_name }}" class="shop_card_image">
                         <div class="shop_info">
                             <h3 class="shop-name">{{ $favorite->shop_name }}</h3>
                             <p class="shop-guide">
@@ -123,7 +123,7 @@
                                 <a href="{{ route('shop.details', ['id' => $favorite->id]) }}" class="shop-detail">詳しくみる</a>
                                 @auth
                                     @if(auth()->user()->favorites->contains($favorite))
-                                        <form action="{{ route('shops.unfavorite', $favorite) }}" method="POST">
+                                        <form action="{{ route('shops.unfavorite', $favorite) }}" method="POST" class="favorite_form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="favorite-button favorited">❤</button>

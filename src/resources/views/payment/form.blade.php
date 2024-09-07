@@ -7,11 +7,11 @@
 
 
 @section('content')
-    <div class="payment-form">
-        <form action="{{ route('payment.process') }}" method="post" id="payment-form">
+    <div class="payment-group">
+        <form action="{{ route('payment.process') }}" method="post" id="payment-form" class="payment_form">
             @csrf
             <div class="form-row">
-                <label for="card-number-element">
+                <label for="card-number-element" class="label_card_content">
                     カード番号
                 </label>
                 <div id="card-number-element" class="card-content">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <label for="card-expiry-element">
+                <label for="card-expiry-element" class="label_card_content">
                     有効期限
                 </label>
                 <div id="card-expiry-element" class="card-content">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <label for="card-cvc-element">
+                <label for="card-cvc-element" class="label_card_content">
                     CVC
                 </label>
                 <div id="card-cvc-element" class="card-content">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div id="card-errors" role="alert"></div>
-            <button type="submit" class="payment-button">支払う</button>
+                <button type="submit" class="payment-button">支払う</button>
         </form>
     </div>
     <script>

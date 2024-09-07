@@ -1,6 +1,6 @@
-.payment-form {
-    width: 70%;
-    margin: 15%;
+.payment-group {
+    width: 60%;
+    margin: 5% 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,14 +10,15 @@
     border-radius: 6px;
 }
 
-form {
+.payment_form {
     width: 90%;
+    margin: 5%;
 }
 
 .form-row {
     text-align: center;
     width: 100%;
-    margin: 10px 0;
+    margin: 10px;
     padding: 2px;
 
 }
@@ -29,13 +30,13 @@ form {
     background-color: #f4f4f4;
 }
 
-label {
+.label_card_content {
     color: black;
     font-weight: bold;
 }
 
 /* ボタンのスタイルをカスタマイズ */
-button {
+.payment-button {
     background-color: #0056b3;
     color: white;
     border: none;
@@ -47,6 +48,6 @@ button {
     font-weight: bold;
 }
 
-button:hover {
+.payment-button:hover {
     background-color: #5c67f2;
 }
