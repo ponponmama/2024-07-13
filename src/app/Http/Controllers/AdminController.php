@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
 
 class AdminController extends Controller
 {
@@ -69,8 +73,8 @@ class AdminController extends Controller
         $validated = $request->validate([
             'shop_name' => 'required|string',
             'description' => 'nullable|string',
-            'genre' => 'required|string',
-            'area' => 'required|string',
+            'genre_name' => 'required|string',
+            'area_name' => 'required|string',
             'image' => 'nullable|image|max:2048',
             'open_time' => 'nullable|string',
             'close_time' => 'nullable|string',
@@ -79,11 +83,13 @@ class AdminController extends Controller
         try {
             DB::beginTransaction();
 
+            // 地域とジャンルをデータベースに保存または取得
+            $area = Area::firstOrCreate(['area_name' => $validated['area_name']]);
+            $genre = Genre::firstOrCreate(['genre_name' => $validated['genre_name']]);
+
             $shop = new Shop([
                 'shop_name' => $validated['shop_name'],
                 'description' => $validated['description'],
-                'genre' => $validated['genre'],
-                'area' => $validated['area'],
                 'open_time' => $validated['open_time'],
                 'close_time' => $validated['close_time'],
             ]);
@@ -94,10 +100,20 @@ class AdminController extends Controller
 
             $shop->save();
 
+            // 中間テーブルに関連付け
+            $shop->areas()->attach($area->id);
+            $shop->genres()->attach($genre->id);
+
+
             DB::commit();
             return redirect()->route('admin.dashboard')->with('success', '新規店舗が正常に登録されました。');
         } catch (\Exception $e) {
             DB::rollback();
+            \Log::error('Error in createShop', [
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
             return back()->withErrors('登録に失敗しました。' . $e->getMessage());
         }
     }

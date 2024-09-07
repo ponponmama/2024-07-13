@@ -83,6 +83,15 @@
     </div>
     <div class="registration-form-low">
         <div class="registration-text-box">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <span class="registration-text-low">新規店舗登録</span>
         </div>    
         <form action="{{ route('admin.create.shop') }}" method="POST" class="create-shop-form" enctype="multipart/form-data">
@@ -92,10 +101,10 @@
                     <img src="{{ asset('images/shop.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="shop_name" placeholder="Shop Name" value="{{ old('shop_name') }}">
+                    <input type="text" name="shop_name" placeholder="Shop Name" value="{{ old('shop_name') }}" class="input_shop_name">
                 </div>
                 <div class="form__error">
-                    @error('shop_id')
+                    @error('shop_name')
                         {{ $message }}
                     @enderror
                 </div>
@@ -118,7 +127,7 @@
                     <img src="{{ asset('images/genre.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="genre" placeholder="Genre" value="{{ old('genre') }}">
+                    <input type="text" name="genre_name" placeholder="Genre" value="{{ old('genre') }}" class="input_genre">
                 </div>
                 <div class="form__error">
                     @error('genre')
@@ -131,7 +140,7 @@
                     <img src="{{ asset('images/area.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="area" placeholder="Area" value="{{ old('area') }}">
+                    <input type="text" name="area_name" placeholder="Area" value="{{ old('area') }}" class="input_area">
                 </div>
                 <div class="form__error">
                     @error('area')
@@ -144,9 +153,11 @@
                     <img src="{{ asset('images/img.png') }}" alt="">
                 </div>
                 <div class="form-group">
-                    <input type="file" id="image" name="image" class="image" style="display: none;">
+                    <input type="file" id="image" name="image" class="input_image" >
                     <label for="image" class="custom-file-upload">
-                        <i class="fa fa-cloud-upload"><span id="file-name"></span></i>写真を選ぶ
+                        <i class="fa-cloud-upload">
+                            <span id="file-name" class="file-name-display"></span>
+                        </i>写真を選択
                     </label>
                 </div>
                 <div class="form__error">
@@ -159,9 +170,9 @@
                 <div class="icon-container">
                     <img src="{{ asset('images/clock.svg') }}" alt="">
                 </div>
-                <div class="time">
-                    <label for="open_time">オープン</label>
-                    <input type="time" id="open_time" name="open_time">
+                <div class="time_box">
+                    <label for="open_time" class="label_open_time">オープン</label>
+                    <input type="time" id="open_time" name="open_time" class="input_open_time">
                 </div>
             </div>
             <div class="form__error">
@@ -173,9 +184,9 @@
                 <div class="icon-container">
                     <img src="{{ asset('images/clock.svg') }}" alt="">
                 </div>
-                <div class="time">
-                    <label for="close_time">クローズ</label>
-                    <input type="time" id="close_time" name="close_time">
+                <div class="time_box">
+                    <label for="close_time" class="label_close_time">クローズ</label>
+                    <input type="time" id="close_time" name="close_time" class="input_close_time">
                 </div>
             </div>
             <div class="form__error">

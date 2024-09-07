@@ -66,11 +66,8 @@ Route::middleware('auth')->group(function () {
     //支払い
     Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
     //MYページに予約情報を取得表示
+    Route::resource('reservations', ReservationController::class);
     Route::get('/reservations/my', [ReservationController::class, 'myReservations'])->name('reservations.my');
-    //ＭＹページから予約の変更
-    Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
-    //ＭＹページで予約の削除
-    Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
     //レビュー
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');

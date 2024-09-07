@@ -13,11 +13,12 @@
     font-size: 1.5rem;
 }
 
-form {
-    width: 70%;
+.form_style {
+    width: 100%;
 }
 
-label {
+.label_shop_name,
+.label_description {
     width: 100%;
     color: #0056b3;
     padding: 4px;
@@ -27,9 +28,9 @@ label {
 .shop_name {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 4px);
+    width: 100%;
     align-items: center;
-    padding: 2px;
+    padding: 6px;
     font-size: 1.2rem;
     font-weight: bold;
 
@@ -38,10 +39,10 @@ label {
 .shop_name_text {
     width: 100%;
     text-align: center;
-    padding: 6px;
-    font-size: 1.3rem;
+    padding: 4px;
+    font-size: 1.2rem;
     font-weight: bold;
-    border: 2px solid #0056b3;
+    border: 1px solid #0056b3;
     border-radius: 4px;
 }
 
@@ -59,7 +60,7 @@ label {
     width: 100%;
     padding: 4px;
     height: 150px;
-    border: 2px solid #0056b3;
+    border: 1px solid #0056b3;
     border-radius: 4px;
     font-size: 1.2rem;
     outline: none;
@@ -84,6 +85,7 @@ label {
     gap: 10%;
 }
 
+
 .business_hours_open {
     width: 50%;
     display: flex;
@@ -98,8 +100,8 @@ label {
     align-items: center;
 }
 
-.business_hours_open label,
-.business_hours_close label {
+.label_open_time,
+.label_close_time {
     width: 100%;
     text-align: left;
     font-weight: bold;
@@ -108,8 +110,8 @@ label {
     color: #0056b3;
 }
 
-.business_hours_open input,
-.business_hours_close input {
+.input_open_time,
+.input_close_time {
     width: 100%;
     text-align: center;
     padding: 2px;
@@ -125,7 +127,11 @@ label {
     padding: 6px;
 }
 
-.business_hours_group label {
+.input_image {
+    display: none;
+}
+
+.label_image {
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -135,16 +141,10 @@ label {
     margin: 4px 2px;
 }
 
-.business_hours_group input {
-    font-size: 1.2rem;
-    text-align: left;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
 .up_date_button_box {
     width: 100%;
     text-align: center;
+    margin: 5% 0;
 }
 
 .up_date_button {
@@ -155,7 +155,6 @@ label {
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
-    margin: 1% 2% 3% 2%;
     font-size: 1rem;
     text-align: center;
     margin: 10px;
@@ -163,7 +162,7 @@ label {
 }
 
 .confirm_text {
-    width: 80%;
+    width: 70%;
     font-size: 1.2rem;
     padding: 10px 0;
     margin: 10px 0;
@@ -177,7 +176,7 @@ label {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.61);
 }
 
-.image-section img {
+.shop_image {
     width: 100%;
     height: 300px;
     display: block;
@@ -209,9 +208,10 @@ label {
 }
 
 .custom-file-upload {
-    border: 1px solid #7a7a7a;
+    border: 1px solid #0056b3;
     display: inline-block;
     padding: 6px 12px;
+    border-radius: 4px;
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -219,10 +219,6 @@ label {
 
 @media (max-width: 768px) {
     .image-section {
-        width: 100%;
-    }
-
-    form {
         width: 100%;
     }
 
@@ -244,6 +240,19 @@ label {
         width: 100%;
         font-size: 1rem;
     }
+
+    .shop-guide,
+    .description {
+        font-size: 1rem;
+    }
+
+
+    .description-text::placeholder,
+    .input_genre::placeholder,
+    .input_area::placeholder {
+        font-size: 1rem;
+    }
+
 
     .business_hours_up {
         width: 100%;

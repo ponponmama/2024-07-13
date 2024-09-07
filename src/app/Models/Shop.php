@@ -12,7 +12,7 @@ class Shop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'shop_name', 'area', 'genre', 'description', 'image', 'open_time', 'close_time'
+        'user_id', 'shop_name','description', 'image', 'open_time', 'close_time'
     ];
     // ユーザーモデルとのリレーション
     public function user()
@@ -27,12 +27,12 @@ class Shop extends Model
 
     public function areas()
     {
-        return $this->belongsToMany(Area::class,'shops_areas');
+        return $this->belongsToMany(Area::class,'shops_areas','shop_id', 'area_id');
     }
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class,'shops_genres');
+        return $this->belongsToMany(Genre::class,'shops_genres', 'shop_id', 'genre_id');
     }
 
     public static function getBusinessHoursForDate($date)
