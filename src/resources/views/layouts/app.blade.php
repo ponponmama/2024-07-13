@@ -9,7 +9,7 @@
     @yield('css')
 </head>
 
-<body>
+<body class="common_body">
     <main>
         <div class="container">
             <div class="content">

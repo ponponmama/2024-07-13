@@ -6,9 +6,10 @@
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 </head>
 
-<body>
+<body class="detail_body">
     <main>
         <div class="container">
             <div class="content">

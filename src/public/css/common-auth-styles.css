@@ -1,4 +1,6 @@
-    body {
+    .register_body,
+    .login_body,
+    .thanks_body {
         margin: 0;
         display: flex;
         justify-content: center;
@@ -79,9 +81,9 @@
         width: calc(100% - 80px);
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
+    .input_email,
+    .input_password,
+    .input_text {
         width: 90%;
         padding: 22px 4px 0px 4px;
         border: none;
@@ -94,8 +96,10 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    input::placeholder {
-        font-size: 1rem;
+    .input_email::placeholder,
+    .input_password::placeholder,
+    .input_text::placeholder {
+        font-size: 1.2rem;
         color: #7a7a7a;
         font-weight: bold;
     }
@@ -202,10 +206,6 @@
             margin: 0;
             line-height: 30px;
             font-size: 1.3rem;
-        }
-
-        input::placeholder {
-            font-size: 1.2rem;
         }
 
         .register-button {

@@ -36,7 +36,7 @@
 }
 
 .reservation-details {
-    width: 50%;
+    width: 70%;
     text-align: left;
     padding: 50px;
     background-color: #0056b3;
@@ -44,14 +44,14 @@
     box-shadow: 3px 3px 6px rgba(0, 0, 5, 0.712);
 }
 
-.reservation-details p {
+.qr_data_content {
     margin: 10px 0;
     color: white;
     font-size: 1rem;
 }
 
 .qr-section-button {
-    width: 50%;
+    width: 70%;
     display: flex;
     text-align: center;
     align-items: center;
@@ -92,7 +92,7 @@
     margin: 4px;
 }
 
-table {
+.shop_reservation {
     margin: 0 auto;
     width: 70%;
     border-collapse: separate;
@@ -106,8 +106,8 @@ table {
     box-shadow: 3px 3px 6px rgba(0, 0, 5, 0.712);
 }
 
-th,
-td {
+.reservation_th,
+.reservation_td {
     border: 1px solid #7a7a7a;
     padding: 4px 10px;
     text-align: left;
@@ -130,7 +130,7 @@ td {
         color: black;
     }
 
-    table {
+    .shop_reservation {
         width: 100%;
         font-size: 0.8rem;
     }

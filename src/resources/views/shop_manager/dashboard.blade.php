@@ -16,26 +16,26 @@
     @endif
     <div class="reservations">
         <h2 class="reservations-list">予約情報</h2>
-        <table>
+        <table class="shop_reservation">
             <thead>
                 <tr>
-                    <th>予約日</th>
-                    <th>時間</th>
-                    <th>人数</th>
-                    <th>予約ID</th>
-                    <th>顧客名</th>
-                    <th>メールアドレス</th>
+                    <th class="reservation_th">予約日</th>
+                    <th class="reservation_th">時間</th>
+                    <th class="reservation_th">人数</th>
+                    <th class="reservation_th">予約ID</th>
+                    <th class="reservation_th">顧客名</th>
+                    <th class="reservation_th">メールアドレス</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($reservations as $reservation)
                 <tr>
-                    <td>{{ $reservation->reservation_datetime->format('Y-m-d') }}</td>
-                    <td>{{ $reservation->reservation_datetime->format('H:i') }}</td>
-                    <td>{{ $reservation->number }}</td>
-                    <td>{{ $reservation->id }}</td>
-                    <td>{{ $reservation->user->user_name }}</td>
-                    <td>{{ $reservation->user->email}}</td>
+                    <td class="reservation_td">{{ $reservation->reservation_datetime->format('Y-m-d') }}</td>
+                    <td class="reservation_td">{{ $reservation->reservation_datetime->format('H:i') }}</td>
+                    <td class="reservation_td">{{ $reservation->number }}</td>
+                    <td class="reservation_td">{{ $reservation->id }}</td>
+                    <td class="reservation_td">{{ $reservation->user->user_name }}</td>
+                    <td class="reservation_td">{{ $reservation->user->email}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -45,12 +45,12 @@
         <div id="qr-data-display" class="qr-data-display">QRコード照会内容</div>
         <div class="qr-data-section">
             <div class="reservation-details">
-                <p><strong>予約日:</strong> <span id="reservation-date"></span></p>
-                <p><strong>時間:</strong> <span id="reservation-time"></span></p>
-                <p><strong>人数:</strong> <span id="reservation-number"></span></p>
-                <p><strong>予約ID:</strong> <span id="reservation-id"></span></p>
-                <p><strong>顧客名:</strong> <span id="reservation-user-name"></span></p>
-                <p><strong>メールアドレス:</strong> <span id="reservation-email"></span></p>
+                <p class="qr_data_content"><strong>予約日:</strong> <span id="reservation-date"></span></p> 
+                <p class="qr_data_content"><strong>時間:</strong> <span id="reservation-time"></span></p>
+                <p class="qr_data_content"><strong>人数:</strong> <span id="reservation-number"></span></p>
+                <p class="qr_data_content"><strong>予約ID:</strong> <span id="reservation-id"></span></p>
+                <p class="qr_data_content"><strong>顧客名:</strong> <span id="reservation-user-name"></span></p>
+                <p class="qr_data_content"><strong>メールアドレス:</strong> <span id="reservation-email"></span></p>
             </div>
             <div class="qr-section-button">
                 <button id="start-scanner-btn" class="start-scanner-btn">スキャン</button>

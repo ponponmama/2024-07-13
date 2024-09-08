@@ -6,7 +6,7 @@
     <title>登録完了</title>
     <link rel="stylesheet" href="{{ asset('css/common-auth-styles.css') }}">
 </head>
-<body>
+<body class="thanks_body">
     <div class="thanks-form">
         <h2 class="form-thanks-title">会員登録ありがとうございます</h2>
         <div class="button-thanks">

@@ -6,7 +6,7 @@
     <title>Registration</title>
     <link rel="stylesheet" href="{{ asset('css/common-auth-styles.css') }}">
 </head>
-<body>
+<body class="register_body">
     <div class="registration-form">
         <div class="title-box">
             <h2 class="form-title">Registration</h2>
@@ -17,7 +17,8 @@
                 <img src="{{ asset('images/human.png') }}" alt="">
             </div>
             <div class="form-group">
-                <input type="text" id="user_name" name="user_name" placeholder="Username" value="{{ old('user_name') }}">
+                <input type="text" id="user_name" name="user_name" placeholder="Username" value="{{ old('user_name') }}" class
+                ="input_text">
             </div>
             <div class="form__error">
                 @error('user_name')
@@ -28,7 +29,7 @@
                 <img src="{{ asset('images/mail.png') }}" alt="">
             </div>
             <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                <input type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}" class="input_email">
             </div>
             <div class="form__error">
                 @error('email')
@@ -39,7 +40,7 @@
                 <img src="{{ asset('images/key.png') }}" alt="">
             </div>
             <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Password" value="{{ old('password') }}">
+                <input type="password" id="password" name="password" placeholder="Password" value="{{ old('password') }}" class="input_password">
             </div>
             <div class="form__error">
                 @error('password')
