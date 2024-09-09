@@ -134,6 +134,15 @@ input[type="time"]::-webkit-clear-button {
     display: none !important;
 }
 
+.input_open_time::-webkit-calendar-picker-indicator,
+.input_open_time::-webkit-inner-spin-button,
+.input_open_time::-webkit-clear-button,
+.input_close_time::-webkit-calendar-picker-indicator,
+.input_close_time::-webkit-inner-spin-button,
+.input_close_time::-webkit-clear-button {
+    display: none !important;
+}
+
 /* ファイル名を表示するスタイル */
 .file-name-display {
     display: block;

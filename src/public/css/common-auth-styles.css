@@ -1,6 +1,7 @@
     .register_body,
     .login_body,
-    .thanks_body {
+    .thanks_body,
+    .done_body {
         margin: 0;
         display: flex;
         justify-content: center;

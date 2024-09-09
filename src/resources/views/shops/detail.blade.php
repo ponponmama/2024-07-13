@@ -26,7 +26,7 @@
                             <h2 class="s-name">{{ $shop->shop_name }}</h2>
                         </div>
                         <div class="image-section">
-                            <img src="{{ asset($shop->image) }}" alt="{{ $shop->shop_name }}">
+                            <img src="{{ asset('storage/' . $shop->image) }}" alt="{{ $shop->shop_name }}">
                             <p class="shop-guide">
                                 @foreach ($shop->areas as $area)
                                     ＃{{ $area->area_name }}
@@ -100,6 +100,6 @@
                 </div>
             </div>
         </div>
-    </main> 
+    </main>
 </body>
 </html>

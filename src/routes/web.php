@@ -76,7 +76,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/shops/{shop}/unfavorite', [FavoriteController::class, 'unfavorite'])->name('shops.unfavorite');
 
     // done.blade.phpから戻った時の店舗詳細表示用
-    Route::get('/shops/{id}', [ShopController::class, 'shopDetails'])->name('shop.details');
+    Route::get('/shops/{id}', [ShopController::class, 'shopDetails'])
+    ->name('shop.details')
+    ->middleware('clear.session');
 
     //詳しく見るボタンクリック 店舗の詳細と予約ページを表示
     Route::get('/shops/{id}/reservation', [ShopController::class, 'shopDetails'])->name('reservation.show');

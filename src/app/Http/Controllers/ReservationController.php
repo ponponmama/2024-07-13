@@ -159,7 +159,7 @@ class ReservationController extends Controller
 
 
         // 現在の時間が営業終了時間を過ぎているかチェック
-        if ($current->greaterThan($end)) {
+        if ($current->greaterThanOrEqualTo($end)) {
             // 営業時間を過ぎている場合、日付を次の日に設定
             $date = $current->addDay()->format('Y-m-d');
         }

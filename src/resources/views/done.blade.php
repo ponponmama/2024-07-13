@@ -6,13 +6,13 @@
     <title>予約完了</title>
     <link rel="stylesheet" href="{{ asset('css/common-auth-styles.css') }}">
 </head>
-
-<body>
+<body class="done_body">
     <div class="thanks-form">
         <h2 class="form-thanks-title">ご予約ありがとうございます</h2>
         <div class="button-thanks">
-            <a href="{{ route('shop.details', ['id' => session('last_visited_shop_id')]) }}" class="back-link">戻る</a>
+            <a href="{{ route('shop.details', ['id' => session('last_visited_shop_id')]) }}" class="back-link" >戻る</a>
         </div>
     </div>
+    
 </body>
 </html>
