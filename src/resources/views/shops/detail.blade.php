@@ -47,7 +47,7 @@
                                 <label for="date"></label>
                                 <input type="date" id="date" name="date" class="date-label" value="{{ $date }}">
                                 <label for="time"></label>
-                                <div class="select-wrapper" style="position: relative;">
+                                <div class="select-wrapper">
                                     <select id="time" name="time">
                                         @foreach ($times ?? [] as $time)
                                             <option value="{{ $time }}"  {{ old('time') == $time ? 'selected' : '' }}>{{ $time }}</option>

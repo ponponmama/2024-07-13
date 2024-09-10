@@ -5,6 +5,7 @@
     text-align: center;
 }
 
+.form-title,
 .user__name {
     margin: 6px auto;
     padding: 4px;
@@ -13,8 +14,10 @@
     color: black;
 }
 
+
 .registration-text,
 .registration-text-low {
+    width: 100%;
     margin: 6px auto;
     padding: 4px;
     font-size: 1rem;
@@ -22,55 +25,36 @@
     color: black;
 }
 
-.title-box,
-.registration-text-box {
-    margin: 4px;
-    padding: 4px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0056b3;
-}
-
-.registration-form,
-.registration-form-low {
+.shop_manager_form,
+.shop_registration_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 2px 2px 4px rgba(2, 0, 77, 0.61);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.61);
     width: 50% !important;
     margin: auto;
     padding: 4px;
-    position: relative;
 }
 
-.registration-form-low {
+.shop_registration_form {
     margin-top: 5%;
 }
 
 .create-form,
 .create-shop-form {
-    width: 100%;
-    padding: 4px;
+    width: 80%;
 }
 
-.form__error {
-    height: 20px;
-    color: #ff0000;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.icon-container {
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 15px;
-}
-
-.icon-container img {
+.icon-img {
     width: 30px;
     height: 30px;
     padding: 3px;
-    margin: 0 5px;
+    margin: 15px 5px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .input-group {
@@ -81,25 +65,78 @@
     justify-content: center;
 }
 
-.time,
-.form-group {
-    display: inline-block;
-    vertical-align: middle;
-    width: 65%;
+.alert-success,
+.alert-danger {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.form__error {
+    line-height: 1.4rem;
+    color: #ff0000;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.select-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.custom-select-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-45%);
+    width: 18px;
+    height: 10px;
+    background-color: #b4b4b4;
+    clip-path: polygon(0 0, 50% 24%, 100% 0, 50% 100%, 0 0);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.select_shop_id {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #7a7a7a;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    z-index: 1;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.input_email,
+.input_password,
 .input_shop_name,
 .input_genre,
-.input_area {
+.input_area,
+.input_user_name {
     width: 100%;
     padding: 18px 4px 0px 4px;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #7a7a7a;
+    color: #7a7a7a;
     font-size: 1.2rem;
     line-height: 1.4rem;
-    background-color: transparent;
     outline: none;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-group-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -115,40 +152,28 @@
     width: 50%;
     font-size: 0.8rem;
     padding: 2px;
+
 }
 
 .input_open_time,
 .input_close_time {
-    width: 70%;
+    width: 100%;
     text-align: center;
     padding: 2px;
     font-size: 1.2rem;
+    border: 1px solid #7a7a7a;
+    border-radius: 4px;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator,
-input[type="time"]::-webkit-inner-spin-button,
-input[type="time"]::-webkit-clear-button {
-    display: none !important;
-}
-
-.input_open_time::-webkit-calendar-picker-indicator,
-.input_open_time::-webkit-inner-spin-button,
-.input_open_time::-webkit-clear-button,
-.input_close_time::-webkit-calendar-picker-indicator,
-.input_close_time::-webkit-inner-spin-button,
-.input_close_time::-webkit-clear-button {
-    display: none !important;
 }
 
 /* ファイル名を表示するスタイル */
 .file-name-display {
     display: block;
     margin-top: 5px;
-    color: #333;
-    font-size: 0.9em;
+    color: #7a7a7a;
+    font-size: 1em;
 }
 
 .input_image {
@@ -173,21 +198,10 @@ input[type="time"]::-webkit-clear-button {
     border: 1px solid #7a7a7a;
     display: inline-block;
     padding: 6px 12px;
+    border-radius: 4px;
     cursor: pointer;
     width: 100%;
     text-align: center;
-}
-
-.input-group-time {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.time_box {
-    display: flex;
-    align-items: end;
-    width: 65%;
 }
 
 

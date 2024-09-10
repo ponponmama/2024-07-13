@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StoreShopRequest;
+use App\Http\Requests\CreateShopManagerRequest;
 
 
 class AdminController extends Controller
@@ -42,14 +44,9 @@ class AdminController extends Controller
     }
 
     //店舗代表者を作成
-    public function createShopManager(Request $request)
+    public function createShopManager(CreateShopManagerRequest $request)
     {
-        $validated = $request->validate([
-            'shop_id' => 'required|exists:shops,id',
-            'user_name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'user_name' => $validated['user_name'],
@@ -68,18 +65,10 @@ class AdminController extends Controller
     }
 
     //新しい店舗作成
-    public function createShop(Request $request)
+    public function createShop(StoreShopRequest $request)
     {
-        $validated = $request->validate([
-            'shop_name' => 'required|string',
-            'description' => 'nullable|string',
-            'genre_name' => 'required|string',
-            'area_name' => 'required|string',
-            'image' => 'nullable|image|max:2048',
-            'open_time' => 'nullable|string',
-            'close_time' => 'nullable|string',
-        ]);
-
+        $validated = $request->validated();
+        
         try {
             DB::beginTransaction();
 
