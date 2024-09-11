@@ -2,7 +2,6 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 @endsection
 
 @section('search')

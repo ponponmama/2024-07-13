@@ -13,7 +13,7 @@
 
 .text-2,
 .text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     padding: 10px;
     margin: 4px;
@@ -31,9 +31,8 @@
 
 .a-link {
     text-decoration: none;
-    width: 30%;
-    height: 40%;
-    padding: 4px 20px;
+    width: 20%;
+    padding: 4px 10px;
     background-color: #0056b3;
     color: white;
     border: none;
@@ -48,14 +47,18 @@
 
 @media (max-width: 768px) {
 
+    .choose-section {
+        width: 80%;
+        margin: 10%;
+    }
+
     .text-2,
     .text {
         font-size: 0.8rem;
     }
 
     .a-link {
-        width: 50%;
+        width: 60%;
+        padding: 10px;
     }
-
-
 }

@@ -60,10 +60,16 @@ namespace App\Http\Controllers;
     // ログイン処理
     public function login(Request $request)
     {
+        $messages = [
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => '有効なメールアドレスを入力してください。',
+            'password.required' => 'パスワードは必須です。',
+        ];
+
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ]);
+        ],$messages);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

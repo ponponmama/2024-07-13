@@ -20,8 +20,8 @@
             </ul>
         </div>
     @endif
-    <h2 class="Edit_Shop_Information">店舗情報</h2>
-    <form action="{{ route('shop_manager.update', $shop->id) }}" method="POST" enctype="multipart/form-data" class="form_style">
+    <h1 class="Edit_Shop_Information">店舗情報</h1>
+    <form action="{{ route('shop_manager.update', $shop->id) }}" method="POST" enctype="multipart/form-data" class="manage_form">
         @csrf
         @method('PUT')
         <div class="shop_name">

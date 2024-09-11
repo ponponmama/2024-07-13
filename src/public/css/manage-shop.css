@@ -10,11 +10,11 @@
     width: 100%;
     text-align: center;
     margin: 4px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
-.form_style {
-    width: 100%;
+.manage_form {
+    width: 80%;
 }
 
 .label_shop_name,
@@ -72,7 +72,7 @@
     margin: 4px;
     color: black;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .time_box {
@@ -247,10 +247,10 @@
     }
 
 
-    .description-text::placeholder,
+    .description_text::placeholder,
     .input_genre::placeholder,
     .input_area::placeholder {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
 
