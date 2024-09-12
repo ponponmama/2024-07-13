@@ -6,9 +6,9 @@
 
 @section('content')
 <div class="shop_container">
-    <div class="name_folder">
-        <h1 class="shop__name"> {{ Auth::user()->shop->shop_name }}　　お疲れ様です！{{ Auth::user()->user_name }}さん</h1>
-    </div>
+    <h1 class="shop_manager_name">
+        {{ Auth::user()->shop->shop_name }}　お疲れ様です！{{ Auth::user()->user_name }}さん
+    </h1>
     @if (session('success'))
         <div class="alert-success">
             {{ session('success') }}
@@ -42,7 +42,9 @@
         </table>
     </div>
     <div class="reservation-query-form">
-        <div id="qr-data-display" class="qr-data-display">QRコード照会内容</div>
+        <h2 id="qr-data-display" class="qr-data-display">
+            QRコード照会内容
+        </h2>
         <div class="qr-data-section">
             <div class="reservation-details">
                 <p class="qr_data_content"><strong>予約日:</strong> <span id="reservation-date"></span></p> 

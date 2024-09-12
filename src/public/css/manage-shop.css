@@ -3,128 +3,146 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+}
+
+.alert-success,
+.alert-danger {
+    text-align: center;
+    font-size: 1rem;
 }
 
 .Edit_Shop_Information {
     width: 100%;
     text-align: center;
-    margin: 4px;
-    font-size: 1.2rem;
+    margin: 10px;
+    font-size: 1.3rem;
 }
 
 .manage_form {
     width: 80%;
-}
-
-.label_shop_name,
-.label_description {
-    width: 100%;
-    color: #0056b3;
     padding: 4px;
-    text-align: left;
 }
 
-.shop_name {
+.shop_name_content {
     display: flex;
-    flex-direction: column;
     width: 100%;
     align-items: center;
-    padding: 6px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 2px;
+    margin-bottom: 4%;
+}
 
+.label_shop_name {
+    width: 30%;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px;
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .shop_name_text {
     width: 100%;
-    text-align: center;
-    padding: 4px;
-    font-size: 1.2rem;
+    text-align: justify;
+    padding: 2px;
+    font-size: 1.3rem;
     font-weight: bold;
-    border: 1px solid #0056b3;
     border-radius: 4px;
 }
 
-.description_box {
+.input-group-description {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
-    padding: 6px;
-    font-size: 1.2rem;
+    align-items: center;
+    padding: 2px;
+    margin-bottom: 4%;
+}
+
+.label_description {
+    width: 30%;
+    font-size: 1rem;
     font-weight: bold;
+    padding: 2px;
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .description_text {
     width: 100%;
-    padding: 4px;
     height: 150px;
-    border: 1px solid #0056b3;
+    padding: 2px;
+    border: 1px solid #7a7a7a;
     border-radius: 4px;
-    font-size: 1.2rem;
+    color: black;
+    font-size: 1rem;
     outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-group,
+.input-group-description {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4%;
+    justify-content: center;
+    padding: 2px;
 }
 
 .business_hours {
+    display: block;
     width: 100%;
-    padding: 6px;
-    margin: 4px;
-    color: black;
-    text-align: center;
-    font-size: 1.2rem;
+    text-align: left;
+    font-weight: bold;
+    padding: 2px;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.7);
 }
 
-.time_box {
+.icon-img {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    margin: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.input-group-time {
     display: flex;
     width: 100%;
-    padding: 6px;
+    padding: 2px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10%;
-}
-
-
-.business_hours_open {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.business_hours_close {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .label_open_time,
 .label_close_time {
-    width: 100%;
-    text-align: left;
+    width: 35%;
+    font-size: 1rem;
     font-weight: bold;
-    font-size: 1.2rem;
-    padding: 5px;
-    color: #0056b3;
+    padding: 2px;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .input_open_time,
 .input_close_time {
-    width: 100%;
+    width: 60%;
     text-align: center;
     padding: 2px;
-    color: black;
     font-size: 1.2rem;
     font-weight: bold;
-    border: 1px solid #0056b3;
+    border: 1px solid #7a7a7a;
     border-radius: 4px;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    color: black;
 }
 
-.business_hours_group {
-    width: 100%;
-    padding: 6px;
+.input_open_time::-webkit-calendar-picker-indicator,
+.input_close_time::-webkit-calendar-picker-indicator {
+    display: none;
 }
 
 .input_image {
@@ -132,28 +150,48 @@
 }
 
 .label_image {
-    width: 100%;
+    width: 30%;
     text-align: center;
     font-weight: bold;
-    font-size: 1.2rem;
-    padding: 6px;
-    color: #0056b3;
-    margin: 4px 2px;
+    font-size: 1rem;
+    padding: 2px;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 4px;
 }
 
-.up_date_button_box {
+/* ファイル名を表示するスタイル */
+.file-name-display {
+    display: block;
+    margin-top: 5px;
+    color: black;
+    font-size: 1em;
+}
+
+.custom-file-upload {
+    border: 1px solid #7a7a7a;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 4px;
+    cursor: pointer;
     width: 100%;
     text-align: center;
-    margin: 5% 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+}
+
+.up_date_button_container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2%;
 }
 
 .up_date_button {
-    width: 40%;
-    padding: 8px 10px;
+    width: 30%;
+    padding: 5px;
     background-color: #0056b3;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 4px;
     display: inline-block;
     font-size: 1rem;
     text-align: center;
@@ -162,14 +200,16 @@
 }
 
 .confirm_text {
-    width: 70%;
+    width: 80%;
     font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.7);
     padding: 10px 0;
     margin: 10px 0;
+    text-align: center;
 }
 
 .image-section {
-    width: 70%;
+    width: 80%;
     height: 500px;
     overflow: hidden;
     border-radius: 6px;
@@ -178,7 +218,7 @@
 
 .shop_image {
     width: 100%;
-    height: 300px;
+    height: 60%;
     display: block;
 }
 
@@ -198,29 +238,44 @@
 }
 
 .business_hours_up {
-    width: 70%;
-    padding: 8px;
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 18px 2px;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.61);
-}
-
-.custom-file-upload {
-    border: 1px solid #0056b3;
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
     width: 100%;
+    margin: 4%;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.7);
     text-align: center;
 }
 
 @media (max-width: 768px) {
-    .image-section {
+
+    .manage_form,
+    .image-section,
+    .confirm_text {
         width: 100%;
     }
+
+    .Edit_Shop_Information {
+        margin: 4px;
+    }
+
+    .shop_name_content {
+        margin-bottom: 4px;
+    }
+
+
+    .input-group-description {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .image-section {
+        width: 100%;
+        height: 260px;
+    }
+
+    .shop_image {
+        height: 125px;
+    }
+
 
     .business_hours_group {
         width: 100%;
@@ -232,20 +287,21 @@
 
     .up_date_button {
         width: 60%;
-        padding: 8px 10px;
-        margin: 10px 0;
+        padding: 4px 10px;
+        margin: 4px 0;
     }
 
     .confirm_text {
         width: 100%;
         font-size: 1rem;
+        margin: 4px;
     }
 
     .shop-guide,
     .description {
-        font-size: 1rem;
+        font-size: 0.8rem;
+        padding: 4px 10px;
     }
-
 
     .description_text::placeholder,
     .input_genre::placeholder,
@@ -253,10 +309,78 @@
         font-size: 0.8rem;
     }
 
-
     .business_hours_up {
         width: 100%;
-        margin: 18px 0;
+        margin: 4px;
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+@media only screen and (width: 768px) {
+
+    .manage_form,
+    .image-section,
+    .confirm_text {
+        width: 70%;
     }
 
+    .Edit_Shop_Information {
+        margin: 4px;
+    }
+
+    .shop_name_content {
+        margin-bottom: 4px;
+    }
+
+    .input-group-description {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .description_text {
+        height: 100px;
+    }
+
+    .image-section {
+        width: 70%;
+        height: 360px;
+    }
+
+    .shop_image {
+        height: 200px;
+    }
+
+    .business_hours_group {
+        width: 70%;
+    }
+
+    .input_image {
+        font-size: 1rem;
+    }
+
+    .up_date_button {
+        width: 40%;
+        padding: 4px 10px;
+        margin: 4px 0;
+    }
+
+    .confirm_text {
+        width: 70%;
+        font-size: 1rem;
+        margin: 4px;
+    }
+
+    .shop-guide,
+    .description {
+        padding: 10px;
+    }
+
+
+    .business_hours_up {
+        width: 80%;
+        margin: 4px;
+        font-size: 1rem;
+        text-align: center;
+    }
 }

@@ -72,6 +72,7 @@
 }
 
 .form__error {
+    height: 22px;
     line-height: 22px;
     color: #ff0000;
     text-align: center;
@@ -202,19 +203,19 @@
     display: none;
 }
 
-.description-text {
+.description_text {
     width: 100%;
     height: 100px;
     padding: 2px 10px;
     border: 1px solid #7a7a7a;
     border-radius: 4px;
     color: black;
-    font-size: 1.2rem;
+    font-size: 1rem;
     outline: none;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.description-text::placeholder {
+.description_text::placeholder {
     font-size: 1.2rem;
     color: black !important;
     opacity: 0.7 !important;
@@ -223,7 +224,7 @@
 .button-container {
     display: flex;
     justify-content: center;
-    margin: 2%;
+    margin-bottom: 10%;
 }
 
 .register-button,

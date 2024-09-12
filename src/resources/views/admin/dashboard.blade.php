@@ -4,13 +4,12 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
 
-
 @section('content')
 <div class="admin_container">
     <h1 class="form-title">Shop Manager Registration</h1>    
     <p class="user__name">お疲れ様です！　{{ Auth::user()->user_name }}さん</p>
     <div class="shop_manager_form">
-        <span class="registration-text">店舗代表者登録</span>
+        <h2 class="registration-text">店舗代表者登録</h2>
         <form action="{{ route('admin.create.shop_manager') }}" method="POST" class="create-form">
             @csrf
             <div class="input-group">
@@ -75,7 +74,7 @@
                 {{ session('error') }}
             </div>
         @endif
-        <span class="registration-text-low">新規店舗登録</span>
+        <h2 class="registration-text-low">新規店舗登録</h2>
         <form action="{{ route('admin.create.shop') }}" method="POST" class="create-shop-form" enctype="multipart/form-data">
             @csrf
             <div class="input-group">
@@ -89,7 +88,7 @@
             </div>
             <div class="input-group">
                 <img src="{{ asset('images/description.png') }}" alt="" class="icon-img">
-                <textarea name="description" placeholder="Description" class="description-text">{{ old('description') }}</textarea>
+                <textarea name="description" placeholder="Description" class="description_text">{{ old('description') }}</textarea>
             </div>
             <div class="form__error">
                 @error('description')
