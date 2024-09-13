@@ -1,5 +1,6 @@
 .manage_content {
-    width: 100%;
+    width: 70%;
+    margin: 0 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +34,7 @@
 
 .label_shop_name {
     width: 30%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     padding: 2px;
     margin-right: 10px;
@@ -44,7 +45,7 @@
     width: 100%;
     text-align: justify;
     padding: 2px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: bold;
     border-radius: 4px;
 }
@@ -59,17 +60,17 @@
 
 .label_description {
     width: 30%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     padding: 2px;
-    margin-right: 10px;
+    margin: 10px 0;
     color: rgba(0, 0, 0, 0.7);
 }
 
 .description_text {
     width: 100%;
-    height: 150px;
-    padding: 2px;
+    height: 160px;
+    padding: 6px;
     border: 1px solid #7a7a7a;
     border-radius: 4px;
     color: black;
@@ -94,7 +95,7 @@
     text-align: left;
     font-weight: bold;
     padding: 2px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: rgba(0, 0, 0, 0.7);
 }
 
@@ -119,7 +120,7 @@
 .label_open_time,
 .label_close_time {
     width: 35%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     padding: 2px;
     color: rgba(0, 0, 0, 0.7);
@@ -134,9 +135,9 @@
     font-weight: bold;
     border: 1px solid #7a7a7a;
     border-radius: 4px;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     color: black;
 }
 
@@ -153,7 +154,7 @@
     width: 30%;
     text-align: center;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 2px;
     color: rgba(0, 0, 0, 0.7);
     margin: 4px;
@@ -163,8 +164,7 @@
 .file-name-display {
     display: block;
     margin-top: 5px;
-    color: black;
-    font-size: 1em;
+
 }
 
 .custom-file-upload {
@@ -177,6 +177,7 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.7);
     font-weight: bold;
+    font-size: 1em;
 }
 
 .up_date_button_container {
@@ -224,7 +225,7 @@
 
 .description {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin: 0;
     font-size: 1.2rem;
 }
@@ -246,6 +247,10 @@
 }
 
 @media (max-width: 768px) {
+    .manage_content {
+        width: 90%;
+        margin: 2% 5%;
+    }
 
     .manage_form,
     .image-section,
@@ -261,6 +266,9 @@
         margin-bottom: 4px;
     }
 
+    .input-group {
+        margin: 2%;
+    }
 
     .input-group-description {
         flex-direction: column;
@@ -318,11 +326,15 @@
 }
 
 @media only screen and (width: 768px) {
+    .manage_content {
+        width: 70%;
+        margin: 0 15%;
+    }
 
     .manage_form,
     .image-section,
     .confirm_text {
-        width: 70%;
+        width: 100%;
     }
 
     .Edit_Shop_Information {
@@ -336,23 +348,24 @@
     .input-group-description {
         flex-direction: column;
         align-items: flex-start;
+        margin-bottom: 2%;
     }
 
     .description_text {
-        height: 100px;
+        height: 120px;
+        padding: 10px;
     }
 
     .image-section {
-        width: 70%;
         height: 360px;
     }
 
     .shop_image {
-        height: 200px;
+        height: 55%;
     }
 
     .business_hours_group {
-        width: 70%;
+        width: 100%;
     }
 
     .input_image {
@@ -366,19 +379,21 @@
     }
 
     .confirm_text {
-        width: 70%;
+        width: 100%;
         font-size: 1rem;
-        margin: 4px;
+        padding: 10px;
+        margin: 2px;
     }
 
     .shop-guide,
     .description {
         padding: 10px;
+        font-size: 1rem;
     }
 
 
     .business_hours_up {
-        width: 80%;
+        width: 100%;
         margin: 4px;
         font-size: 1rem;
         text-align: center;

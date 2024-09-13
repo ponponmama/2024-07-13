@@ -26,26 +26,27 @@
     position: relative;
     z-index: 1000;
     margin-right: 10px;
-    top: 12px;
+    top: 14px;
 }
 
 .nav-menu {
-    width: 95vw;
+    width: 100vw;
     height: 100vh;
     display: none;
-    position: absolute;
-    top: -10px;
-    left: -25px;
+    position: fixed;
+    top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
     background-color: white;
     padding: 0;
     font-size: 1.5rem;
     z-index: 1001;
+    overflow: auto;
 }
 
 .n-menu {
-    width: 90vw;
+    width: 100vw;
     height: 100vh;
     margin: 0 auto;
     display: flex;
@@ -53,6 +54,7 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+
 }
 
 .bar-1 {
@@ -82,8 +84,8 @@
     padding: 0 1px;
 }
 
-a.nav-link,
-button.logout-button {
+.nav-link,
+.logout-button {
     font-size: 2rem;
     color: blue;
     font-weight: bold;
@@ -99,33 +101,18 @@ button.logout-button {
     color: blue;
     text-decoration: underline;
     cursor: pointer;
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {
-
-
-    .left-group {
-        width: 100%;
-        align-items: center;
-    }
-
     .hamburger-menu {
         position: absolute;
-        top: -20px;
+        top: 4px;
 
     }
 
     .nav-menu {
-        width: 95vw;
-        height: 100vh;
-        top: -35px;
-        left: -25px;
-    }
-
-
-    .top_logo {
-        width: 100%;
-        padding: 2px 45px;
-
+        top: 0;
+        left: 0;
     }
 }

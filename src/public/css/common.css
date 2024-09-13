@@ -140,6 +140,36 @@ button.logout-button {
 }
 
 @media (max-width: 768px) {
+    .common_body {
+        height: auto;
+    }
+
+    .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5px;
+        background-color: #f4f4f4;
+    }
+
+    .left-group {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .container {
+        width: 100%;
+
+    }
+
+    .content {
+        background-color: #f4f4f4;
+        width: 96%;
+        padding: 10px 20px;
+        margin: 2%;
+    }
+
 
 
     .left-group {

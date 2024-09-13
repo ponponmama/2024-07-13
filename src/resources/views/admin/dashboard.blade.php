@@ -1,7 +1,7 @@
 @extends('admin.app_admin')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_shop_css/admin.css') }}">
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <h1 class="form-title">Shop Manager Registration</h1>    
     <p class="user__name">お疲れ様です！　{{ Auth::user()->user_name }}さん</p>
     <div class="shop_manager_form">
-        <h2 class="registration-text">店舗代表者登録</h2>
+        <h2 class="manage_admin">店舗代表者登録</h2>
         <form action="{{ route('admin.create.shop_manager') }}" method="POST" class="create-form">
             @csrf
             <div class="input-group">
@@ -74,7 +74,7 @@
                 {{ session('error') }}
             </div>
         @endif
-        <h2 class="registration-text-low">新規店舗登録</h2>
+        <h2 class="shop_manage">新規店舗登録</h2>
         <form action="{{ route('admin.create.shop') }}" method="POST" class="create-shop-form" enctype="multipart/form-data">
             @csrf
             <div class="input-group">

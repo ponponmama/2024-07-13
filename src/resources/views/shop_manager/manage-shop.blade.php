@@ -1,7 +1,7 @@
-@extends('shop_manager.shop_app')
+@extends('admin.app_admin')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/manage-shop.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_shop_css/manage-shop.css') }}">
 @endsection
 
 @section('content')

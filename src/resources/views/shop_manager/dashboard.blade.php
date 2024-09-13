@@ -1,7 +1,7 @@
-@extends('shop_manager.shop_app')
+@extends('admin.app_admin')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_shop_css/shop.css') }}">
 @endsection
 
 @section('content')
@@ -12,6 +12,11 @@
     @if (session('success'))
         <div class="alert-success">
             {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="alert-danger">
+            {{ session('error') }}
         </div>
     @endif
     <div class="reservations">
@@ -41,25 +46,21 @@
             </tbody>
         </table>
     </div>
-    <div class="reservation-query-form">
-        <h2 id="qr-data-display" class="qr-data-display">
-            QRコード照会内容
-        </h2>
-        <div class="qr-data-section">
-            <div class="reservation-details">
-                <p class="qr_data_content"><strong>予約日:</strong> <span id="reservation-date"></span></p> 
-                <p class="qr_data_content"><strong>時間:</strong> <span id="reservation-time"></span></p>
-                <p class="qr_data_content"><strong>人数:</strong> <span id="reservation-number"></span></p>
-                <p class="qr_data_content"><strong>予約ID:</strong> <span id="reservation-id"></span></p>
-                <p class="qr_data_content"><strong>顧客名:</strong> <span id="reservation-user-name"></span></p>
-                <p class="qr_data_content"><strong>メールアドレス:</strong> <span id="reservation-email"></span></p>
-            </div>
-            <div class="qr-section-button">
-                <button id="start-scanner-btn" class="start-scanner-btn">スキャン</button>
-                <button id="stop-scanner-btn" class="stop-scanner-btn">停止</button>
-                <button id="reset-btn" class="reset-btn">リセット</button> 
-            </div>
-        </div>
+    <h2 id="qr-data-display" class="qr-data-display">
+        QRコード照会内容
+    </h2>
+    <div class="reservation-details">
+        <p class="qr_data_content"><strong>予約日:</strong> <span id="reservation-date"></span></p> 
+        <p class="qr_data_content"><strong>時間:</strong> <span id="reservation-time"></span></p>
+        <p class="qr_data_content"><strong>人数:</strong> <span id="reservation-number"></span></p>
+        <p class="qr_data_content"><strong>予約ID:</strong> <span id="reservation-id"></span></p>
+        <p class="qr_data_content"><strong>顧客名:</strong> <span id="reservation-user-name"></span></p>
+        <p class="qr_data_content"><strong>メールアドレス:</strong> <span id="reservation-email"></span></p>
+    </div>
+    <div class="qr-section-button">
+        <button id="start-scanner-btn" class="start-scanner-btn">スキャン</button>
+        <button id="stop-scanner-btn" class="stop-scanner-btn">停止</button>
+        <button id="reset-btn" class="reset-btn">リセット</button> 
     </div>
 </div>
 <div class="camera-reader" id="reader">
