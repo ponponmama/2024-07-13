@@ -234,3 +234,24 @@
         font-size: 0.8rem;
     }
 }
+
+@media only screen and (width: 768px) {
+    .search-content {
+        width: 100%;
+    }
+
+    .shop_card {
+        flex: 0 1 30%;
+        margin-bottom: 2%;
+    }
+
+    .shop-name,
+    .shop-guide {
+        font-size: 1.2rem;
+    }
+
+    .shop-detail {
+        width: 50%;
+        font-size: 0.8rem;
+    }
+}

@@ -24,7 +24,6 @@ use App\Http\Controllers\QRController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // 店舗一覧ページ表示用,検索機能
 Route::get('/', [ShopController::class, 'index'])->name('shops.index');
 //guestが詳しく見るボタンクリックした時の選択route

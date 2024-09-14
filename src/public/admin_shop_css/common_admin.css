@@ -7,7 +7,7 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: left;
     padding: 0 5px;
     background-color: #f4f4f4;
 }
@@ -36,20 +36,6 @@
 
 
 @media (max-width: 768px) {
-
-    .header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 5px;
-        background-color: #f4f4f4;
-    }
-
-    .left-group {
-        display: flex;
-        align-items: flex-start;
-    }
 
     .container {
         width: 100%;

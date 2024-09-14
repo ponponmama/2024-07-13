@@ -1,33 +1,68 @@
-.detail_body {
-    font-family: Arial, Helvetica, sans-serif;
+.detail-section {
+    display: flex;
 }
 
-.flex-container {
+.detail_layout {
+    width: 50%;
+}
+
+.navigation {
+    width: 100%;
     display: flex;
+    padding: 2px 10px;
+}
+
+.back-link {
+    position: relative;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    padding: 2px 4px;
+    margin: 0 10px 0 0;
+    font-size: 0.8rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.61);
+}
+
+.back-link:hover {
+    background-color: rgb(226, 226, 226);
+    color: #666565;
+}
+
+.image_section {
     width: 100%;
 }
 
-.header,
-.reservation-form {
-    width: 50%;
-    box-sizing: border-box;
-}
-
-.flex-low {
-    display: flex;
-    text-align: center;
-}
-
-.left-side {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    padding: 10px 60px;
-}
-
-.header {
+.shop_image {
+    width: 100%;
     padding: 10px;
-    background-color: #f4f4f4;
+}
+
+.description {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.shop-guide {
+    width: 80%;
+    padding: 10px;
+    text-align: start;
+    margin: 0;
+}
+
+.navigation_shop_name {
+    margin: 0;
+}
+
+.shop_name {
+    font-size: 1rem;
 }
 
 .form-section {
@@ -187,167 +222,6 @@ select {
     font-size: 1.8rem;
 }
 
-.navigation {
-    display: flex;
-    padding: 2px 10px;
-}
-
-.s-name {
-    margin: 0;
-}
-
-.shop_name {
-    font-size: 1rem;
-}
-
-.back-link {
-    position: relative;
-    top: 6px;
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    padding: 2px 4px;
-    margin: 0 10px 0 0;
-    font-size: 0.8rem;
-    background-color: white;
-    color: black;
-    text-decoration: none;
-    font-weight: bolder;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.61);
-}
-
-.back-link:hover {
-    background-color: rgb(226, 226, 226);
-    color: #666565;
-}
-
-.image-section {
-    width: 100%;
-}
-
-.image-section img {
-    width: 100%;
-    padding: 10px;
-}
-
-.description {
-    width: 100%;
-    padding: 10px;
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.shop-guide {
-    width: 80%;
-    padding: 10px;
-    text-align: start;
-    margin: 0;
-}
-
-/* ハンバーガーメニューのスタイル追加 */
-.menu-wrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-    justify-content: flex-start;
-}
-
-.menu-toggle {
-    display: none;
-}
-
-.menu-toggle:checked+.hamburger-menu+.nav-menu {
-    display: block;
-}
-
-.hamburger-menu {
-    cursor: pointer;
-    display: block;
-    width: 35px;
-    height: 35px;
-    background-color: #0056b3;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.61);
-    border-radius: 3px;
-    padding: 5px;
-    position: relative;
-    z-index: 1000;
-    margin-right: 10px;
-}
-
-.nav-menu {
-    width: 95vw;
-    height: 100vh;
-    display: none;
-    position: absolute;
-    top: -30px;
-    left: -90px;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    padding: 0;
-    font-size: 1.5rem;
-    z-index: 1001;
-}
-
-.n-menu {
-    width: 90vw;
-    height: 100vh;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-.bar-1 {
-    width: 50%;
-    height: 1%;
-    background-color: white;
-    margin: 5px 0;
-    transition: 0.4s;
-    padding: 0 1px;
-}
-
-.bar-2 {
-    width: 100%;
-    height: 1%;
-    background-color: white;
-    margin: 5px 0;
-    transition: 0.4s;
-    padding: 0 1px;
-}
-
-.bar-3 {
-    width: 25%;
-    height: 1%;
-    background-color: white;
-    margin: 5px 0;
-    transition: 0.4s;
-    padding: 0 1px;
-}
-
-a.nav-link,
-.logout-button {
-    font-size: 2rem;
-    color: blue;
-    font-weight: bold;
-    padding: 6px;
-    margin: 4px;
-    text-decoration: none !important;
-}
-
-.logout-button {
-    background: none;
-    border: none;
-    padding: 0;
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-
 @media (max-width: 768px) {
     .flex-container {
         width: 100%;
@@ -366,30 +240,6 @@ a.nav-link,
 
     .reservation-form {
         width: 100%;
-    }
-
-    .hamburger-menu {
-        padding: 5px;
-    }
-
-    .nav-menu {
-        top: -30px;
-        left: -40px;
-        right: 0;
-        bottom: 0;
-        background-color: white;
-        padding: 0;
-    }
-
-    .n-menu {
-        width: 90vw;
-        height: 100vh;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
     }
 
     .top_logo {
@@ -414,3 +264,5 @@ a.nav-link,
     }
 
 }
+
+@media only screen and (width: 768px) {}
