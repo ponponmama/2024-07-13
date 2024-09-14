@@ -1,15 +1,18 @@
-.detail-section {
-    display: flex;
+.left-group {
+    padding: 10px 15px;
 }
 
-.detail_layout {
+.detail_shop {
     width: 50%;
+
+    margin-top: calc(8%);
+    margin-left: calc(-100%);
 }
 
 .navigation {
-    width: 100%;
+    width: 80%;
     display: flex;
-    padding: 2px 10px;
+    padding: 10px 0;
 }
 
 .back-link {
@@ -36,11 +39,11 @@
 
 .image_section {
     width: 100%;
+    padding: 8px 0;
 }
 
 .shop_image {
     width: 100%;
-    padding: 10px;
 }
 
 .description {
@@ -66,29 +69,29 @@
 }
 
 .form-section {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 98vh;
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
     background-color: #044c99;
     color: white;
     border-radius: 6px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.733);
+    margin-top: 15px;
+    margin-left: 10%;
 }
 
-.reservation {
-    width: 50%;
-    padding: 10px;
-}
-
-.select-wrapper {
+.reserve {
     width: 100%;
-    position: relative;
+    text-align: left;
+    padding: 20px 20px 2px 20px;
+    margin: 0;
+    font-size: 1.2rem;
 }
 
-.form-section form {
+.reserve_form {
     width: calc(100% - 24px);
     display: flex;
     flex-direction: column;
@@ -96,29 +99,26 @@
     padding: 4px 12px;
 }
 
-.form-section label {
+.label_date {
+    width: calc(40% - 24px);
+    padding: 4px 12px;
+    margin: 2px 14px;
+}
+
+.label_time,
+.label_number,
+.label_shop,
+.label_date_session,
+.label_time_session,
+.label_number_session {
     width: calc(100% - 24px);
     margin: 2px 10px;
     padding: 4px 12px;
     color: white;
 }
 
-.form-section input {
-    margin: 2px 14px;
-    padding: 4px 12px;
-    width: calc(100% - 24px);
-    border-radius: 4px;
-    border: none;
-}
-
-.form-section .date-label {
-    width: calc(40% - 24px);
-    padding: 4px 12px;
-    margin: 2px 14px;
-}
-
-input[type="date"],
-select {
+.select_time,
+.select_number {
     width: 100%;
     margin: 2px 14px;
     padding: 4px 12px;
@@ -133,6 +133,18 @@ select {
     z-index: 1;
 }
 
+.input_date {
+    margin: 2px 14px;
+    padding: 4px 12px;
+    width: calc(50% - 24px);
+    border-radius: 4px;
+    border: none;
+}
+
+.select-wrapper {
+    width: 100%;
+    position: relative;
+}
 
 /* カスタムアイコンのスタイル */
 .custom-select-icon {
@@ -146,6 +158,22 @@ select {
     clip-path: polygon(0 0, 50% 24%, 100% 0, 50% 100%, 0 0);
     pointer-events: none;
     z-index: 2;
+}
+
+.reservation-summary {
+    width: calc(90% - 20px);
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin: 10px;
+    background-color: #044c99;
+    color: white;
+
+}
+
+.summary-item {
+    width: calc(100% - 20px);
+    padding: 4px;
+    text-align: left;
 }
 
 .button-container {
@@ -164,63 +192,22 @@ select {
     margin-top: auto;
 }
 
-.form-section button:hover {
+.reserve-button:hover {
     background-color: #044c99;
 }
 
 .qr-code {
     width: calc(100% - 20px);
-    padding: 10px;
+    padding: 4px;
     text-align: center;
 }
 
 .qr-text {
-    padding: 10px;
+    text-align: center;
+    padding: 4px;
     font-size: 1rem;
 }
 
-.reservation-summary {
-    width: calc(90% - 20px);
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin: 20px;
-    background-color: #044c99;
-    color: white;
-
-}
-
-.summary-item {
-    width: calc(100% - 20px);
-    padding: 10px;
-    text-align: left;
-}
-
-.reserve {
-    width: 100%;
-    text-align: left;
-    padding: 20px 20px 2px 20px;
-    margin: 0;
-}
-
-.container {
-    width: 100%;
-
-}
-
-.content {
-    background-color: #f4f4f4;
-    width: 96%;
-    padding: 10px 20px;
-    margin: 2%;
-}
-
-.top_logo {
-    color: #0056b3;
-    margin: 0;
-    padding: 10px 4px;
-    text-align: left;
-    font-size: 1.8rem;
-}
 
 @media (max-width: 768px) {
     .flex-container {
@@ -242,9 +229,6 @@ select {
         width: 100%;
     }
 
-    .top_logo {
-        padding: 2px;
-    }
 
     .image-section {
         width: 100%;

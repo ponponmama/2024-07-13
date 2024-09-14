@@ -27,7 +27,6 @@
     </div>
 @endsection    
 @section('reservation_form')
-    <div class="reservation">
         <div class="form-section">
             <h2 class="reserve">
                 予約
@@ -35,11 +34,12 @@
             <form action="{{ route('reservations.store') }}" method="post" id="reserve-form" class="reserve_form">
                 @csrf
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                <label for="date"></label>
-                <input type="date" id="date" name="date" class="date-label" value="{{ $date }}">
-                <label for="time"></label>
+                <label for="date" class="label_date"></label>
+                <input type="date" id="date" name="date" class="input_date" value="{{ $date }}">
+                <label for="time" class
+                ="label_time"></label>
                 <div class="select-wrapper">
-                    <select id="time" name="time">
+                    <select id="time" name="time" class="select_time">
                         @foreach ($times ?? [] as $time)
                             <option value="{{ $time }}"  {{ old('time') == $time ? 'selected' : '' }}>
                                 {{ $time }}
@@ -48,9 +48,9 @@
                     </select>
                     <span class="custom-select-icon"></span>
                 </div>
-                <label for="number"></label>
-                <div class="select-wrapper" style="position: relative;">
-                    <select id="number" name="number">
+                <label for="number" class="label_number"></label>
+                <div class="select-wrapper">
+                    <select id="number" name="number" class="select_number">
                         @for ($i = 1; $i <= 20; $i++)
                             <option value="{{ $i }}" {{ old('number', 1) == $i ? 'selected' : '' }}>
                                 {{ $i }}人
@@ -63,25 +63,25 @@
             <div class="reservation-summary">
                 @if(session('reservation_details'))
                     <div class="summary-item">
-                        <label>Shop:</label>
+                        <label class="label_shop">Shop:</label>
                         <span class="summary-date">
                             {{ session('reservation_details')->shop->shop_name }}
                         </span>
                     </div>
                     <div class="summary-item">
-                        <label>Date:</label>
+                        <label class="label_date_session">Date:</label>
                         <span class="summary-date">
                             {{ \Carbon\Carbon::parse(session('reservation_details')->reservation_datetime)->format('Y-m-d') }}
                         </span>
                     </div>
                     <div class="summary-item">
-                        <label>Time:</label>
+                        <label class="label_time_session">Time:</label>
                         <span class="summary-date">
                             {{ \Carbon\Carbon::parse(session('reservation_details')->reservation_datetime)->format('H:i') }}
                         </span>
                     </div>
                     <div class="summary-item">
-                        <label>Number:</label>
+                        <label class="label_number_session">Number:</label>
                         <span class="summary-date">
                             {{ session('reservation_details')->number . '人' }}
                         </span>
@@ -100,5 +100,4 @@
                 </button>
             </div>
         </div>
-    </div>
 @endsection

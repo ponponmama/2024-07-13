@@ -18,10 +18,10 @@
                 <div class="header">
                     <div class="left-group">
                         @include('partials.navbar')
-                        <div class="detail_layout">
-                            <h1 class="top_logo">
-                                Rese
-                            </h1>
+                        <h1 class="top_logo">
+                            Rese
+                        </h1>
+                        <div class="detail_shop">
                             @yield('detail_shop')
                         </div>
                         @yield('reservation_form')
