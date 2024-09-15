@@ -7,14 +7,8 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
     padding: 0 5px;
     background-color: #f4f4f4;
-}
-
-.left-group {
-    display: flex;
-    align-items: flex-start;
 }
 
 .container {
@@ -30,7 +24,7 @@
 }
 
 .top_logo {
-    width: 100%;
+    width: 50%;
     color: #0056b3;
     margin: 0;
     padding: 10px 4px;
@@ -39,11 +33,6 @@
 }
 
 @media (max-width: 768px) {
-
-    .container {
-        width: 100%;
-
-    }
 
     .content {
         background-color: #f4f4f4;
@@ -54,7 +43,7 @@
 
     .top_logo {
         width: 100%;
-        padding: 2px 45px;
+        padding: 2px 30px;
         margin-left: 20px;
     }
 }

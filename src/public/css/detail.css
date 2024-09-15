@@ -1,16 +1,12 @@
-.left-group {
-    padding: 10px 15px;
-}
-
 .detail_shop {
     width: 50%;
-
-    margin-top: calc(8%);
-    margin-left: calc(-100%);
+    margin-top: calc(6%);
+    margin-left: calc(-50%);
+    margin-right: 5%;
 }
 
 .navigation {
-    width: 80%;
+    width: 100%;
     display: flex;
     padding: 10px 0;
 }
@@ -22,7 +18,7 @@
     height: 24px;
     display: inline-block;
     padding: 2px 4px;
-    margin: 0 10px 0 0;
+    margin-right: 14px;
     font-size: 0.8rem;
     background-color: white;
     color: black;
@@ -61,6 +57,7 @@
 }
 
 .navigation_shop_name {
+    width: 80%;
     margin: 0;
 }
 
@@ -70,7 +67,7 @@
 
 .form-section {
     width: 50%;
-    height: 98vh;
+    height: 94vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,7 +77,7 @@
     border-radius: 6px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.733);
     margin-top: 15px;
-    margin-left: 10%;
+    margin-left: 4%;
 }
 
 .reserve {
@@ -95,7 +92,7 @@
     width: calc(100% - 24px);
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: start;
     padding: 4px 12px;
 }
 
@@ -119,7 +116,6 @@
 
 .select_time,
 .select_number {
-    width: 100%;
     margin: 2px 14px;
     padding: 4px 12px;
     width: calc(100% - 24px);
@@ -161,10 +157,9 @@
 }
 
 .reservation-summary {
-    width: calc(90% - 20px);
+    width: calc(100% - 20px);
     padding: 4px 10px;
     border-radius: 6px;
-    margin: 10px;
     background-color: #044c99;
     color: white;
 
@@ -197,20 +192,22 @@
 }
 
 .qr-code {
-    width: calc(100% - 20px);
-    padding: 4px;
+    width: 100%;
+    padding: 2px;
     text-align: center;
 }
 
 .qr-text {
+    width: 100%;
     text-align: center;
     padding: 4px;
     font-size: 1rem;
+    margin: 4px 0;
 }
 
 
 @media (max-width: 768px) {
-    .flex-container {
+    .header {
         width: 100%;
         flex-direction: column;
     }
@@ -225,8 +222,9 @@
         padding: 10px;
     }
 
-    .reservation-form {
+    .detail_shop {
         width: 100%;
+        margin: 0;
     }
 
 
@@ -238,9 +236,24 @@
         width: 100%;
     }
 
-    .form-section .date-label {
-        width: calc(68% - 8px);
-        padding: 4px;
+    .form-section {
+        width: 100%;
+        height: auto;
+        margin: 10% 0;
+    }
+
+    .reserve {
+        width: calc(100% - 24px);
+        margin-top: 5%;
+        padding: 4px 12px;
+    }
+
+    .reserve_form {
+        padding: 4px 0;
+    }
+
+    .input_date {
+        width: 60%;
     }
 
     .reservation-summary {
@@ -249,4 +262,42 @@
 
 }
 
-@media only screen and (width: 768px) {}
+@media only screen and (width: 768px) {
+    .header {
+        width: 80%;
+        margin: 0 10%;
+    }
+
+
+    .label_date {
+        width: calc(40% - 24px);
+        padding: 4px 12px;
+        margin: 2px 14px;
+    }
+
+    .label_time,
+    .label_number,
+    .label_shop,
+    .label_date_session,
+    .label_time_session,
+    .label_number_session {
+        width: calc(100% - 24px);
+        margin: 2px 10px;
+        padding: 4px 12px;
+    }
+
+    .select_time,
+    .select_number {
+        width: 80%;
+        margin: 2px 14px;
+        padding: 4px 12px;
+        width: calc(100% - 24px);
+    }
+
+    .input_date {
+        margin: 2px 14px;
+        padding: 4px 12px;
+        width: calc(50% - 24px);
+    }
+
+}

@@ -1,6 +1,6 @@
 .payment-group {
-    width: 60%;
-    margin: 5% 20%;
+    width: 40%;
+    margin: 5% auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,4 +50,27 @@
 
 .payment-button:hover {
     background-color: #5c67f2;
+}
+
+@media (max-width: 768px) {
+    .payment-group {
+        width: 80%;
+        margin: 5% auto;
+    }
+
+    .payment_form {
+        margin: auto;
+    }
+
+    /* ボタンのスタイルをカスタマイズ */
+    .payment-button {
+        width: 50%;
+    }
+}
+
+@media only screen and (width: 768px) {
+    .payment-group {
+        width: 40%;
+        margin: 5% auto;
+    }
 }

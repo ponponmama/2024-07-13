@@ -15,8 +15,8 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.61);
-    width: 40% !important;
-    position: absolute !important;
+    width: 40%;
+    position: absolute;
     margin: auto;
 }
 
@@ -25,12 +25,12 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.61);
-    padding: 20px !important;
-    width: 40% !important;
+    padding: 20px;
+    width: 40%;
     text-align: center;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 50%;
 }
 
@@ -41,16 +41,16 @@
 }
 
 .title-box {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    background-color: #0056b3 !important;
-    color: white !important;
-    text-align: left !important;
-    padding: 2px 30px !important;
-    border-top-left-radius: 8px !important;
-    border-top-right-radius: 8px !important;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #0056b3;
+    color: white;
+    text-align: left;
+    padding: 2px 30px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     margin: 0 0 10px 0;
 }
 
@@ -107,7 +107,7 @@
 .input_password::placeholder,
 .input_text::placeholder {
     font-size: 1.2rem;
-    color: rgb(10, 10, 10) !important;
+    color: rgb(10, 10, 10);
 }
 
 .button-container {
@@ -150,37 +150,38 @@
 
 @media (max-width: 768px) {
 
+    .registration_container,
     .login_container {
-        width: 80% !important;
+        width: 80%;
     }
 
     .thanks-form {
-        width: 80% !important;
-        height: 30%;
+        width: 80%;
     }
 
     .registration-form,
     .login-form {
-        width: 100% !important;
-    }
-
-    .title-box {
-        padding: 14px 40px !important;
         width: 100%;
-        box-sizing: border-box;
-        margin: 0 0 22px 0 !important;
     }
 
-    .form-title {
-        margin: 0;
-        line-height: 30px;
-        font-size: 1.3rem;
+    .register-button,
+    .login-button,
+    .thanks-button,
+    .back-link {
+        width: 50%;
+    }
+}
+
+@media only screen and (width: 768px) {
+
+    .registration_container,
+    .login_container {
+        width: 60%;
     }
 
-    .form-thanks-title {
-        font-size: 1.2rem;
+    .thanks-form {
+        width: 60%;
     }
-
 
     .register-button,
     .login-button,

@@ -13,23 +13,19 @@
 
 <body class="common_body">
     <main>
-        <div class="container">
-            <div class="content">
-                <div class="header">
-                    <div class="left-group">
-                        @include('partials.navbar')
-                        <h1 class="top_logo">
-                            Rese
-                        </h1>
-                        <div class="detail_shop">
-                            @yield('detail_shop')
-                        </div>
-                        @yield('reservation_form')
-                    </div>
-                    @yield('search')
+        <div class="content">
+            <div class="header">
+                @include('partials.navbar')
+                <h1 class="top_logo">
+                    Rese
+                </h1>
+                <div class="detail_shop">
+                    @yield('detail_shop')
                 </div>
-                @yield('content')
+                @yield('reservation_form')
+                @yield('search')
             </div>
+            @yield('content')
         </div>
     </main> 
 </body>
