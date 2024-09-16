@@ -146,42 +146,6 @@ mkdir -p /path/to/your/project/storage/app/public/images
 mkdir -p /path/to/your/project/storage/app/public/qr_codes
 php artisan storage:link
 ```
-
-6. アプリケーションキーの生成
-
-```Bash
-php artisan key:generate
-```
-
-6.データベースのマイグレーション
-
-```Bash
-php artisan migrate
-```
-
-7.データベースシーダーの実行
-- 全てのシーダーを実行する前に、`Areas` テーブルと `Genres` テーブルのシーダーを先に実行する必要があります。これにより、依存関係が正しく処理されます。
-
-```Bash
-php artisan db:seed --class=AreasTableSeeder
-php artisan db:seed --class=GenresTableSeeder
-```
-
-- 上記のシーダーが完了した後、残りのシーダーを実行します。
-
-```Bash
-php artisan db:seed
-```
-
-8.ローカルサーバーの起動
-
-```Bash
-docker-compose up --build
-```
-
-
-
-
 #### HTTPS 証明書の発行方法
 - QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
 HTTPS通信を行うためにはSSL証明書が必要です。以下のコマンドを使用して自己署名のSSL証明書を生成できます。
@@ -217,7 +181,6 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx
 
 このコマンドにより、`nginx.key` (秘密鍵) と `nginx.crt` (公開証明書) が生成されます。生成時には上記のようにいくつかの質問に答える必要があります。
 
-
 #### Docker 環境設定
 
 `docker-compose.yml` ファイルを使用して、Docker環境を構築します。HTTPS用のポート443を開放し、SSL証明書と秘密鍵を適切な場所にマウントします。
@@ -234,6 +197,43 @@ volumes:
 listen 443 ssl;
 ssl_certificate /path/to/your/ssl/nginx.crt;　 # SSL証明書へのパスを更新
 ssl_certificate_key /path/to/your/ssl/nginx.key;::　 # 秘密鍵へのパスを更新
+
+
+
+6. アプリケーションキーの生成
+
+```Bash
+php artisan key:generate
+```
+
+6.データベースのマイグレーション
+
+```Bash
+php artisan migrate
+```
+
+7.データベースシーダーの実行
+- 全てのシーダーを実行する前に、`Areas` テーブルと `Genres` テーブルのシーダーを先に実行する必要があります。これにより、依存関係が正しく処理されます。
+
+```Bash
+php artisan db:seed --class=AreasTableSeeder
+php artisan db:seed --class=GenresTableSeeder
+```
+
+- 上記のシーダーが完了した後、残りのシーダーを実行します。
+
+```Bash
+php artisan db:seed
+```
+
+8.ローカルサーバーの起動
+
+```Bash
+docker-compose up --build
+```
+
+
+
 
 ####リマインダーメールを送るために必要なCronジョブの設定手順
 
