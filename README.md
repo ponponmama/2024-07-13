@@ -94,58 +94,7 @@ git clone https://github.com/ponponmama/20240713-erika_hara-rese.git
 cd 20240713-erika_hara-rese
 ```
 
-2. 必要なパッケージのインストール
-
-```bash　
-sudo apt-get update
-sudo apt-get install php-curl
-```
-
-
-Docker コンテナのビルドと起動
-
-```bash
-docker-compose up　-d --build
-```
-
-- php.ini ファイルで curl 拡張機能を有効にする
-
-```ini
-extension=curl
-```
-
-- curl拡張機能が正しくロードされているか確認
-
-```bash
-php -m | grep curl
-```
-
-3. Composerを使用した依存関係のインストール
-
-- Docker環境でPHPコンテナに入り、依存関係をインストールします。
-
-```bash
-docker-compose exec php bash
-composer install
-```
-
-4. 環境設定ファイルの設定
-
-- .env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
-
-```bash
-cp .env.example .env
-```
-
-- 環境設定を更新した後、設定キャッシュをクリアするために以下のコマンドを実行します。これにより、新しい設定がアプリケーションに反映されます。
-
-```bash
-php artisan config:clear
-```
-
-この手順は、特に環境変数が更新された後や、`.env` ファイルに重要な変更を加えた場合に重要です。設定キャッシュをクリアすることで、古い設定が引き続き使用されることを防ぎます。
-
-5. 環境設定手順
+2. 環境設定手順
 
 #### HTTPS 証明書の発行方法
 - QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
@@ -206,6 +155,59 @@ listen 443 ssl;
 ssl_certificate /path/to/your/ssl/nginx.crt;　 # SSL証明書へのパスを更新
 ssl_certificate_key /path/to/your/ssl/nginx.key;::　 # 秘密鍵へのパスを更新
 ```
+
+3. 必要なパッケージのインストール
+
+```bash　
+sudo apt-get update
+sudo apt-get install php-curl
+```
+
+
+Docker コンテナのビルドと起動
+
+```bash
+docker-compose up -d --build
+```
+
+- php.ini ファイルで curl 拡張機能を有効にする
+
+```ini
+extension=curl
+```
+
+- curl拡張機能が正しくロードされているか確認
+
+```bash
+php -m | grep curl
+```
+
+4. Composerを使用した依存関係のインストール
+
+- Docker環境でPHPコンテナに入り、依存関係をインストールします。
+
+```bash
+docker-compose exec php bash
+composer install
+```
+
+5. 環境設定ファイルの設定
+
+- .env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
+
+```bash
+cp .env.example .env
+```
+
+- 環境設定を更新した後、設定キャッシュをクリアするために以下のコマンドを実行します。これにより、新しい設定がアプリケーションに反映されます。
+
+```bash
+docker-compose exec php bash
+php artisan config:clear
+```
+
+この手順は、特に環境変数が更新された後や、`.env` ファイルに重要な変更を加えた場合に重要です。設定キャッシュをクリアすることで、古い設定が引き続き使用されることを防ぎます。
+
 ####ディレクトリの作成とストレージ設定
 
 - プロジェクトを始める前に、以下のディレクトリを作成してください。これにより、ファイルの保存場所が正しく設定されます。
