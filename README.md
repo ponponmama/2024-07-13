@@ -1,18 +1,18 @@
-## Rese（リーズ）飲食店予約サービスアプリ
+### Rese（リーズ）飲食店予約サービスアプリ
 
-### サービス概要
+#### サービス概要
 
 - 飲食店予約サービスRese（リーズ）は、ある企業のグループ会社向けの飲食店予約サービスです。外部サービスに依存せず、手数料を節約しながら自社で完全にコントロール可能な予約システムを提供します。
 
 
-## 制作の背景と目的
+### 制作の背景と目的
 外部の飲食店予約サービスでは手数料が発生するため、自社で予約サービスを持つことでコスト削減とデータ管理の自由度を高めたいと考えています。
 
-## 制作の目標
+### 制作の目標
 - 初年度でのユーザー数10,000人を達成する。
 - 直感的で使いやすいインターフェースを提供する。
 
-## 機能要件
+### 機能要件
 - **予約変更機能**: ユーザーはマイページから予約日時や人数を変更できる。
 - **評価機能**: 来店後、ユーザーが店舗を5段階で評価し、コメントを残せる。
 - **バリデーション**: 認証と予約の際にFormRequestを使用してバリデーションを行う。
@@ -25,15 +25,15 @@
 - **QRコード**: 利用者が来店時に提示するQRコードを発行し、店舗側で照合。
 - **決済機能**: Stripeを利用した決済機能。
 
-## 作業範囲
+### 作業範囲
 - 設計
 - コーディング
 - テスト
 
-## ターゲットユーザー
+### ターゲットユーザー
 - 20〜30代の社会人
 
-## システム要件
+### システム要件
 
 - **開発言語**: PHP
 - **フレームワーク**: Laravel
@@ -41,7 +41,7 @@
 - **バージョン管理**: GitHub
 
 
-## 使用技術
+### 使用技術
 
 - **フロントエンド**: HTML, CSS, JavaScript
 - **バックエンド**: PHP, Laravel
@@ -49,12 +49,13 @@
 - **バージョン管理**: Git, GitHub
 
 
-## コントリビューション
+### コントリビューション
 このプロジェクトはクローズドソースであり、特定のグループ会社の内部使用に限られています。外部からのコントリビューションは受け付けていません。
 
-## ライセンス
+### ライセンス
 このプロジェクトは特定のクライアントにのみ提供される専用のソフトウェアです。再配布や商用利用は禁止されています。
-### 使用技術（実行環境）
+
+#### 使用技術（実行環境）
 
 - **開発言語**: PHP
 - **フレームワーク**: Laravel 8.x
@@ -62,12 +63,13 @@
 - **バージョン管理**: GitHub
 - **コンテナ化技術**: Docker
 
-### テーブル設計・ER図
+#### テーブル設計・ER図
 
 ![rese_table ER Diagram](src/rese_table.drawio.png)
 
 ![rese ER Diagram](src/rese.drawio.png)
-### 環境構築
+
+#### 環境構築
 
 - **PHP**: 8.1.29
 - **MySQL**: 10.11.6-MariaDB
@@ -85,75 +87,72 @@
 - **5.php artisan migrate**
 - **6.php artisan db:seed**
 
-###クローン作製手順
+####クローン作製手順
 
 1. GitHubリポジトリのクローン
-```Bash
 
+```bash
 git clone https://github.com/ponponmama/20240713-erika_hara-rese.git
-cd 20240713-erika_hara-rese
-```
+cd 20240713-erika_hara-rese```
 
 2. 必要なパッケージのインストール
 
-```Bash　
+```bash　
 sudo apt-get update
-sudo apt-get install php-curl
-```
+sudo apt-get install php-curl```
 
 
-- PHPを再起動(必要に応じて)
+Docker コンテナのビルドと起動
 
-```Bash
-docker-compose up　-d --build
-```
+```bash
+docker-compose up　-d --build```
 
 - php.ini ファイルで curl 拡張機能を有効にする
 
+```ini
 extension=curl
-
 
 - curl拡張機能が正しくロードされているか確認
 
-```Bash
-php -m | grep curl
-```
+```bash
+php -m | grep curl```
 
 3. Composerを使用した依存関係のインストール
 
 - Docker環境でPHPコンテナに入り、依存関係をインストールします。
 
-```Bash
+```bash
 docker-compose exec php bash
-composer install
-```
+composer install```
 
 4. 環境設定ファイルの設定
 
 - .env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
 
-```Bash
-cp .env.example .env
-```
+```bash
+cp .env.example .env```
+
+- 環境設定を更新した後、設定キャッシュをクリアするために以下のコマンドを実行します。これにより、新しい設定がアプリケーションに反映されます。
+
+```bash
+   php artisan config:clear```
+
+この手順は、特に環境変数が更新された後や、`.env` ファイルに重要な変更を加えた場合に重要です。設定キャッシュをクリアすることで、古い設定が引き続き使用されることを防ぎます。
 
 5. 環境設定手順
 
-- プロジェクトを始める前に、以下のディレクトリを作成してください。これにより、ファイルの保存場所が正しく設定されます。
-- 店舗画像の保存とQRコードを保存するために以下のディレクトリを作成してください。PHPコンテナ内で実行します。
-
-```Bash
-mkdir -p /path/to/your/project/storage/app/public/images
-mkdir -p /path/to/your/project/storage/app/public/qr_codes
-php artisan storage:link
-```
 #### HTTPS 証明書の発行方法
 - QRコードを照合するためにカメラにアクセスしますが、https環境であることが条件です。
-HTTPS通信を行うためにはSSL証明書が必要です。以下のコマンドを使用して自己署名のSSL証明書を生成できます。
-githubクローンには下記の証明書は入っていない為、作成してください。
 
-```Bash
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt
-```
+HTTPS通信を行うためにはSSL証明書が必要です。以下のコマンドを使用して自己署名のSSL証明書を生成できます。
+この証明書は開発環境でのテスト用途に適しています。
+
+GitHubクローンには下記の証明書は含まれていないため、作成してください。
+
+プロジェクトのルートディレクトリ（コンテナ内）で以下のコマンドを実行してください。
+
+```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt```
 
 このコマンド実行時には、以下のような情報を入力します。
 
@@ -167,7 +166,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx
 
 例えば、以下のように入力します。
 
-### SSL証明書生成のための情報入力例
+#### SSL証明書生成のための情報入力例
 
 - **Country Name (2 letter code)**: `JP` (日本)
 - **State or Province Name (full name)**: `Hyogo` (兵庫県)
@@ -194,46 +193,42 @@ volumes:
 - ./path/to/your/nginx.key:/path/to/your/nginx.key # 秘密鍵をマウント
 
 ####default.confを編集
+
 listen 443 ssl;
 ssl_certificate /path/to/your/ssl/nginx.crt;　 # SSL証明書へのパスを更新
 ssl_certificate_key /path/to/your/ssl/nginx.key;::　 # 秘密鍵へのパスを更新
 
+####ディレクトリの作成とストレージ設定
 
+- プロジェクトを始める前に、以下のディレクトリを作成してください。これにより、ファイルの保存場所が正しく設定されます。
+- 店舗画像の保存とQRコードを保存するために以下のディレクトリを作成してください。PHPコンテナ内で実行します。
+
+```bash
+mkdir -p /path/to/your/project/storage/app/public/images
+mkdir -p /path/to/your/project/storage/app/public/qr_codes
+php artisan storage:link```
 
 6. アプリケーションキーの生成
 
-```Bash
-php artisan key:generate
-```
+```bash
+php artisan key:generate```
 
 6.データベースのマイグレーション
 
-```Bash
-php artisan migrate
-```
+```bash
+php artisan migrate```
 
 7.データベースシーダーの実行
 - 全てのシーダーを実行する前に、`Areas` テーブルと `Genres` テーブルのシーダーを先に実行する必要があります。これにより、依存関係が正しく処理されます。
 
-```Bash
+```bash
 php artisan db:seed --class=AreasTableSeeder
-php artisan db:seed --class=GenresTableSeeder
-```
+php artisan db:seed --class=GenresTableSeeder```
 
 - 上記のシーダーが完了した後、残りのシーダーを実行します。
 
-```Bash
-php artisan db:seed
-```
-
-8.ローカルサーバーの起動
-
-```Bash
-docker-compose up --build
-```
-
-
-
+```bash
+php artisan db:seed```
 
 ####リマインダーメールを送るために必要なCronジョブの設定手順
 
@@ -270,7 +265,7 @@ protected function schedule(Schedule $schedule)
 - `MAIL_ENCRYPTION`: メール送信の暗号化方式（例: tls, ssl）
 - `MAIL_FROM_NAME`: メール送信時の差出人名（環境変数 `APP_NAME` を使用する場合もあり）
 
-plaintext
+```plaintext
 
 MAIL_MAILER=smtp  
 MAIL_HOST=sandbox.smtp.mailtrap.io  
@@ -295,12 +290,13 @@ MAIL_LOG_CHANNEL=stack
 4. コピーした `.env` ファイルを開き、以下の環境変数を更新します：
 
    ```plaintext
+
    STRIPE_KEY=ここに公開可能キーを貼り付ける
-   STRIPE_SECRET=ここに秘密キーを貼り付ける
-   ```
+   STRIPE_SECRET=ここに秘密キーを貼り付ける```
 
 ### 注意事項
-- **セキュリティのため、Stripe の API キーを公開リポジトリにアップロードしないでください。** これらのキーはあなたのアカウントと直接関連しており、不正利用される可能性があります。
+- **セキュリティのため、Stripe の API キーを公開リポジトリにアップロードしないでください。** 
+- これらのキーはあなたのアカウントと直接関連しており、不正利用される可能性があります。
 - 環境変数を使用することで、開発環境と本番環境で異なるキーを簡単に切り替えることができます。
 
 この設定により、アプリケーションは Stripe を介して安全に決済処理を行うことができます。
