@@ -93,29 +93,34 @@
 
 ```bash
 git clone https://github.com/ponponmama/20240713-erika_hara-rese.git
-cd 20240713-erika_hara-rese```
+cd 20240713-erika_hara-rese
+```
 
 2. 必要なパッケージのインストール
 
 ```bash　
 sudo apt-get update
-sudo apt-get install php-curl```
+sudo apt-get install php-curl
+```
 
 
 Docker コンテナのビルドと起動
 
 ```bash
-docker-compose up　-d --build```
+docker-compose up　-d --build
+```
 
 - php.ini ファイルで curl 拡張機能を有効にする
 
 ```ini
 extension=curl
+```
 
 - curl拡張機能が正しくロードされているか確認
 
 ```bash
-php -m | grep curl```
+php -m | grep curl
+```
 
 3. Composerを使用した依存関係のインストール
 
@@ -123,19 +128,22 @@ php -m | grep curl```
 
 ```bash
 docker-compose exec php bash
-composer install```
+composer install
+```
 
 4. 環境設定ファイルの設定
 
 - .env.example ファイルを .env としてコピーし、必要に応じてデータベースなどの設定を行います。
 
 ```bash
-cp .env.example .env```
+cp .env.example .env
+```
 
 - 環境設定を更新した後、設定キャッシュをクリアするために以下のコマンドを実行します。これにより、新しい設定がアプリケーションに反映されます。
 
 ```bash
-   php artisan config:clear```
+php artisan config:clear
+```
 
 この手順は、特に環境変数が更新された後や、`.env` ファイルに重要な変更を加えた場合に重要です。設定キャッシュをクリアすることで、古い設定が引き続き使用されることを防ぎます。
 
@@ -152,7 +160,8 @@ GitHubクローンには下記の証明書は含まれていないため、作�
 プロジェクトのルートディレクトリ（コンテナ内）で以下のコマンドを実行してください。
 
 ```bash
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt
+```
 
 このコマンド実行時には、以下のような情報を入力します。
 
@@ -206,29 +215,34 @@ ssl_certificate_key /path/to/your/ssl/nginx.key;::　 # 秘密鍵へのパスを
 ```bash
 mkdir -p /path/to/your/project/storage/app/public/images
 mkdir -p /path/to/your/project/storage/app/public/qr_codes
-php artisan storage:link```
+php artisan storage:link
+```
 
 6. アプリケーションキーの生成
 
 ```bash
-php artisan key:generate```
+php artisan key:generate
+```
 
 6.データベースのマイグレーション
 
 ```bash
-php artisan migrate```
+php artisan migrate
+```
 
 7.データベースシーダーの実行
 - 全てのシーダーを実行する前に、`Areas` テーブルと `Genres` テーブルのシーダーを先に実行する必要があります。これにより、依存関係が正しく処理されます。
 
 ```bash
 php artisan db:seed --class=AreasTableSeeder
-php artisan db:seed --class=GenresTableSeeder```
+php artisan db:seed --class=GenresTableSeeder
+```
 
 - 上記のシーダーが完了した後、残りのシーダーを実行します。
 
 ```bash
-php artisan db:seed```
+php artisan db:seed
+```
 
 ####リマインダーメールを送るために必要なCronジョブの設定手順
 
@@ -265,7 +279,6 @@ protected function schedule(Schedule $schedule)
 - `MAIL_ENCRYPTION`: メール送信の暗号化方式（例: tls, ssl）
 - `MAIL_FROM_NAME`: メール送信時の差出人名（環境変数 `APP_NAME` を使用する場合もあり）
 
-```plaintext
 
 MAIL_MAILER=smtp  
 MAIL_HOST=sandbox.smtp.mailtrap.io  
@@ -274,7 +287,8 @@ MAIL_USERNAME=your_mailtrap_username # Mailtrapのユーザー名をここに入
 MAIL_PASSWORD=your_mailtrap_password # Mailtrapのパスワードをここに入力  
 MAIL_ENCRYPTION=tls  
 MAIL_FROM_NAME="${APP_NAME}" # アプリケーション名を使用する場合  
-MAIL_LOG_CHANNEL=stack  
+MAIL_LOG_CHANNEL=stack 
+
 
 この設定を適用後、アプリケーションからのメールは Mailtrap の仮想SMTPサーバーを通じて送信され、実際には配信されずに Mailtrap のダッシュボードで確認することができます。
 
@@ -289,10 +303,10 @@ MAIL_LOG_CHANNEL=stack
 3. `.env.example` ファイルを `.env` としてコピーします。
 4. コピーした `.env` ファイルを開き、以下の環境変数を更新します：
 
-   ```plaintext
-
+```plaintext
    STRIPE_KEY=ここに公開可能キーを貼り付ける
-   STRIPE_SECRET=ここに秘密キーを貼り付ける```
+   STRIPE_SECRET=ここに秘密キーを貼り付ける
+```
 
 ### 注意事項
 - **セキュリティのため、Stripe の API キーを公開リポジトリにアップロードしないでください。** 
