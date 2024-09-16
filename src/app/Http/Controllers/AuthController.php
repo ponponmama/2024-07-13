@@ -93,7 +93,7 @@ namespace App\Http\Controllers;
         }
 
         return back()->withErrors([
-            'email' => '指定された認証情報が記録と一致しません。',
+            'email' => '指定された認証情報が登録情報と一致しません。',
         ]);
     }
 
