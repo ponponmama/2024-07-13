@@ -192,21 +192,22 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx
 #### Docker 環境設定
 
 `docker-compose.yml` ファイルを使用して、Docker環境を構築します。HTTPS用のポート443を開放し、SSL証明書と秘密鍵を適切な場所にマウントします。
-
 #### docker-compose.ymlを編集
 
+```plaintext
 ports:
       - "443:443" # HTTPS用のポートを追加
 volumes:      
 - ./path/to/your/nginx.crt:/path/to/your/nginx.crt # SSL証明書をマウント
 - ./path/to/your/nginx.key:/path/to/your/nginx.key # 秘密鍵をマウント
-
+```
 ####default.confを編集
 
+```plaintext
 listen 443 ssl;
 ssl_certificate /path/to/your/ssl/nginx.crt;　 # SSL証明書へのパスを更新
 ssl_certificate_key /path/to/your/ssl/nginx.key;::　 # 秘密鍵へのパスを更新
-
+```
 ####ディレクトリの作成とストレージ設定
 
 - プロジェクトを始める前に、以下のディレクトリを作成してください。これにより、ファイルの保存場所が正しく設定されます。
@@ -253,16 +254,16 @@ php artisan db:seed
 Laravelのスケジューラを使用するには、app/Console/Kernel.php ファイル内でスケジュールされたタスクを定義する必要があります。以下は、Kernel.php ファイルにスケジュールを設定する方法の例です。
 
 protected function schedule(Schedule $schedule)
-    {
-        // ここにスケジュールされたコマンドを追加します。
-        $schedule->command('inspire')
-                 ->hourly();
+   {
+         // ここにスケジュールされたコマンドを追加します。
+         $schedule->command('inspire')
+                  ->hourly();
 
-        // 予約リマインダーメールを毎日朝7時に送信するスケジュール
-        $schedule->command('send:reservation-reminder')
-                 ->dailyAt('07:00')
-                 ->appendOutputTo(storage_path('logs/reservation_reminder.log'));
-    }
+         // 予約リマインダーメールを毎日朝7時に送信するスケジュール
+         $schedule->command('send:reservation-reminder')
+                  ->dailyAt('07:00')
+                  ->appendOutputTo(storage_path('logs/reservation_reminder.log'));
+   }
 
 この設定では、send:reservation-reminder コマンドが毎日7時に実行され、その実行結果が storage/logs/reservation_reminder.log に記録されます。appendOutputTo メソッドを使用して、コマンドの出力をログファイルに追記するように設定しています。時間は指定したい時刻に変更ください。
 
@@ -279,7 +280,7 @@ protected function schedule(Schedule $schedule)
 - `MAIL_ENCRYPTION`: メール送信の暗号化方式（例: tls, ssl）
 - `MAIL_FROM_NAME`: メール送信時の差出人名（環境変数 `APP_NAME` を使用する場合もあり）
 
-
+```plaintext
 MAIL_MAILER=smtp  
 MAIL_HOST=sandbox.smtp.mailtrap.io  
 MAIL_PORT=2525  
@@ -288,7 +289,7 @@ MAIL_PASSWORD=your_mailtrap_password # Mailtrapのパスワードをここに入
 MAIL_ENCRYPTION=tls  
 MAIL_FROM_NAME="${APP_NAME}" # アプリケーション名を使用する場合  
 MAIL_LOG_CHANNEL=stack 
-
+```
 
 この設定を適用後、アプリケーションからのメールは Mailtrap の仮想SMTPサーバーを通じて送信され、実際には配信されずに Mailtrap のダッシュボードで確認することができます。
 
