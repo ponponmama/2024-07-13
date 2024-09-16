@@ -231,9 +231,6 @@ mkdir -p /path/to/your/project/storage/app/public/qr_codes
 php artisan storage:link
 ```
 
-- シーダー用の画像を配置する
-  - シーダーで使用する画像は `src/public/shops_img` にあります。これらの画像を `src/storage/app/public/images` にコピーしてください。これにより、アプリケーションがこれらの画像を正しく参照できるようになります。
-
 次に、これらのディレクトリに適切なパーミッションを設定してください。これにより、アプリケーションがファイルを適切に読み書きできるようになります。
 
 ```bash
@@ -241,6 +238,9 @@ chmod -R 775 /var/www/storage/app/public/images
 chmod -R 775 /var/www/storage/app/public/qr_codes
 chown -R www-data:www-data /var/www/storage/app/public
 ```
+- シーダー用の画像を配置する
+  - シーダーで使用する画像は `src/public/shops_img` にあります。これらの画像を `src/storage/app/public/images` にコピーしてください。これにより、アプリケーションがこれらの画像を正しく参照できるようになります。
+
 
 これらのコマンドは、アプリケーションが画像や QR コードを保存するためのディレクトリに適切なアクセス権を設定するために必要です。`www-data` はウェブサーバーのユーザーですが、使用しているサーバーによっては異なるユーザー名になる場合があるため、環境に合わせて適宜変更してください。
 
