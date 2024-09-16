@@ -63,9 +63,7 @@
 - **バージョン管理**: GitHub
 - **コンテナ化技術**: Docker
 
-#### テーブル設計・ER図
-
-![rese_table ER Diagram](src/rese_table.drawio.png)
+#### ER図
 
 ![rese ER Diagram](src/rese.drawio.png)
 
