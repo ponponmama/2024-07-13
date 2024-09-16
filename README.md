@@ -105,7 +105,7 @@ sudo apt-get install php-curl
 - PHPを再起動(必要に応じて)
 
 ```Bash
-docker-compose up --build
+docker-compose up　-d --build
 ```
 
 - php.ini ファイルで curl 拡張機能を有効にする
@@ -121,7 +121,10 @@ php -m | grep curl
 
 3. Composerを使用した依存関係のインストール
 
+- Docker環境でPHPコンテナに入り、依存関係をインストールします。
+
 ```Bash
+docker-compose exec php bash
 composer install
 ```
 
@@ -133,7 +136,18 @@ composer install
 cp .env.example .env
 ```
 
-5. アプリケーションキーの生成
+5. 環境設定手順
+
+- プロジェクトを始める前に、以下のディレクトリを作成してください。これにより、ファイルの保存場所が正しく設定されます。
+- 店舗画像の保存とQRコードを保存するために以下のディレクトリを作成してください。PHPコンテナ内で実行します。
+
+```Bash
+mkdir -p /path/to/your/project/storage/app/public/images
+mkdir -p /path/to/your/project/storage/app/public/qr_codes
+php artisan storage:link
+```
+
+6. アプリケーションキーの生成
 
 ```Bash
 php artisan key:generate
@@ -146,6 +160,14 @@ php artisan migrate
 ```
 
 7.データベースシーダーの実行
+- 全てのシーダーを実行する前に、`Areas` テーブルと `Genres` テーブルのシーダーを先に実行する必要があります。これにより、依存関係が正しく処理されます。
+
+```Bash
+php artisan db:seed --class=AreasTableSeeder
+php artisan db:seed --class=GenresTableSeeder
+```
+
+- 上記のシーダーが完了した後、残りのシーダーを実行します。
 
 ```Bash
 php artisan db:seed
