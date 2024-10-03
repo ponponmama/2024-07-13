@@ -9,6 +9,8 @@ services:
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./src:/var/www/
+      - ./src/nginx.crt:/etc/ssl/nginx.crt # SSL証明書をマウント
+      - ./src/nginx.key:/etc/ssl/nginx.key # 秘密鍵をマウント
     depends_on:
       - php
 

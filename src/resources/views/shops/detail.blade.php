@@ -35,10 +35,14 @@
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
             <label for="date" class="label_date"></label>
-            <input type="date" id="date" name="date" class="input_date" value="{{ $date }}">
+            <input type="date" id="date" name="date" class="input_date">
+            @error('date')
+                <div class="form__error">{{ $message }}</div>
+            @enderror
             <label for="time" class="label_time"></label>
             <div class="select-wrapper">
                 <select id="time" name="time" class="select_time">
+                    <option value="">選択してください</option>
                     @foreach ($times ?? [] as $time)
                         <option value="{{ $time }}"  {{ old('time') == $time ? 'selected' : '' }}>
                             {{ $time }}
@@ -47,17 +51,24 @@
                 </select>
                 <span class="custom-select-icon"></span>
             </div>
+            @error('time')
+                <div class="form__error">{{ $message }}</div>
+            @enderror
             <label for="number" class="label_number"></label>
             <div class="select-wrapper">
                 <select id="number" name="number" class="select_number">
+                    <option value="">選択してください</option>
                     @for ($i = 1; $i <= 20; $i++)
-                        <option value="{{ $i }}" {{ old('number', 1) == $i ? 'selected' : '' }}>
+                        <option value="{{ $i }}" {{ old('number') == $i ? 'selected' : '' }}>
                             {{ $i }}人
                         </option>
                     @endfor
                 </select>
                 <span class="custom-select-icon"></span>
             </div>
+            @error('number')
+                <div class="form__error">{{ $message }}</div>
+            @enderror
         </form>
         <div class="reservation-summary">
             @if(session('reservation_details'))

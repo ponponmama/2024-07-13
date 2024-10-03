@@ -93,7 +93,6 @@ class AdminController extends Controller
             $shop->areas()->attach($area->id);
             $shop->genres()->attach($genre->id);
 
-
             DB::commit();
             return redirect()->route('admin.dashboard')->with('success', '新規店舗が正常に登録されました。');
         } catch (\Exception $e) {
