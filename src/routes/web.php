@@ -67,26 +67,21 @@ Route::middleware('auth')->group(function () {
     //MYページに予約情報を取得表示
     Route::resource('reservations', ReservationController::class);
     Route::get('/reservations/my', [ReservationController::class, 'myReservations'])->name('reservations.my');
-
     //レビュー
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     //お気に入り追加と解除
     Route::post('/shops/{shop}/favorite', [FavoriteController::class, 'favorite'])->name('shops.favorite');
     Route::delete('/shops/{shop}/unfavorite', [FavoriteController::class, 'unfavorite'])->name('shops.unfavorite');
-
     // done.blade.phpから戻った時の店舗詳細表示用
     Route::get('/shops/{id}', [ShopController::class, 'shopDetails'])
     ->name('shop.details')
     ->middleware('clear.session');
-
     //詳しく見るボタンクリック 店舗の詳細と予約ページを表示
     Route::get('/shops/{id}/reservation', [ShopController::class, 'shopDetails'])->name('reservation.show');
-
    // 予約関連のルート index,store,show,edit,update,destroy
     Route::resource('reservations', ReservationController::class);
     //予約作成ページ
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
-    
 });
 
 // Admin用のルート
@@ -100,7 +95,6 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     // 画像保存機能
     Route::get('/admin/save-image', [AdminController::class, 'saveImage'])->name('admin.save.image');
 });
-
 
 // Shop Manager用のルート
 Route::middleware(['auth', 'role:2'])->group(function () {
