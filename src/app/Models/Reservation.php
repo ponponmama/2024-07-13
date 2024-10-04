@@ -28,4 +28,10 @@ class Reservation extends Model
     {
         return $this->belongsTo(Shop::class);
     }
+
+    // 予約に関連する支払い情報を取得するリレーション
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

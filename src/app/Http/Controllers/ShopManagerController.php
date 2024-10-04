@@ -16,8 +16,6 @@ class ShopManagerController extends Controller
         $shopId = Auth::user()->shop->id;
         $reservations = Reservation::where('shop_id', $shopId)->get();
 
-        //dd($shopId, $reservations);
-
         return view('shop_manager.dashboard', ['reservations' => $reservations]);
     }
 
