@@ -27,7 +27,7 @@
                 <span class="custom-select-icon"></span> 
             </div>
             <button type="submit" class="search-button">
-                <img src="{{ asset('images/search.png') }}" alt="Search">
+                <img src="{{ asset('images/search.png') }}" alt="Search" class="search_img">
             </button>
             <input class="search-form__item-input" type="text" name="search-shop__name" placeholder="{{ __('Search...') }}">
         </div>
