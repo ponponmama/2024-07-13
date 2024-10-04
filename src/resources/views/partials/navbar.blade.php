@@ -1,9 +1,9 @@
     <div class="menu-wrapper">
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="hamburger-menu">
-            <div class="bar-1"></div>
-            <div class="bar-2"></div>
-            <div class="bar-3"></div>
+            <div class="top-bar"></div>
+            <div class="middle-bar"></div>
+            <div class="bottom-bar"></div>
         </label>
         <nav class="nav-menu">
             <ul class="n-menu">
