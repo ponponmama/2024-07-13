@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\User;
 use App\Models\Reservation;
 use Illuminate\Mail\Mailable;
