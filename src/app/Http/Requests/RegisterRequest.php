@@ -13,7 +13,6 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        \Log::info('Authorize method called');
         return true;
     }
 
