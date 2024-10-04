@@ -13,6 +13,5 @@
             <a href="{{ route('shop.details', ['id' => session('last_visited_shop_id')]) }}" class="back-link" >戻る</a>
         </div>
     </div>
-    
 </body>
 </html>
