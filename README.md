@@ -300,13 +300,42 @@ $schedule->command('inspire')
 ### メール設定
 
 プロジェクトでは開発環境でのメール送信のテストに Mailtrap を使用しています。
-1.`https://mailtrap.io/` のサイトからアカウント作成します。
-2.Start testingをクリックします。もしくは、左サイドバーで「Email Testing」＞「Inboxes」をクリックします。
-3.Inbox画面に移動したら、Integrationsのセレクトボックスをクリックしてください。
-4.使用しているフレームワーク等を選びます。今回私はLaravel8を使っていたのでLaravel 8.xを選びました。
-5.laravel 8.xを選択したら、Laravel8の設定をクリックします。
-6.Laravelを選択した場合は以下のように.envに貼り付ける用のコードが出ますので、コピーします。
-7.下の設定を `.env` ファイルに追加してください。これにより、開発中のメール送信を安全にテストすることができます。
+
+![Mailtrapのホームページ](mailtrap_home.png)
+
+**1.アカウント作成***
+`https://mailtrap.io/` のサイトからサインアップタブをクリックし、アカウント作成します。
+
+![サインアップ画面](image-1.png)
+![サインアップ画面](image.png)
+
+**2. Start testingのクリック**
+赤枠の部分のStart testingをクリックします。もしくは、左サイドバーで「Email Testing」＞「Inboxes」をクリックします。
+
+![Start testingボタン](image-2.png)
+
+**3. Inbox画面への移動**
+Inbox画面に移動したら、Integrationsのセレクトボックスをクリックしてください。
+
+![Inbox画面](image-3.png)
+
+**4. フレームワークの選択**
+使用しているフレームワーク等を選びます。Laravel8を使っていたのでLaravel 8.xを選びました。
+
+![フレームワーク選択画面](image-4.png)
+
+**5. Laravelの設定**
+laravel 8.xを選択したら、Laravel8の設定をクリックします。
+
+![Laravel設定画面](image-5.png)
+
+**6. .env設定のコピー**
+Laravelを選択した場合は以下のように.envに貼り付ける用のコードが出ますので、コピーします。
+
+![env設定コード](image-6.png)
+
+**7. .envファイルへの設定追加**
+下の設定を `.env` ファイルに追加してください。これにより、開発中のメール送信を安全にテストすることができます。
 
 - `MAIL_MAILER`: メールドライバー（例: smtp, sendmail）
 - `MAIL_HOST`: メールサーバーのホスト名
