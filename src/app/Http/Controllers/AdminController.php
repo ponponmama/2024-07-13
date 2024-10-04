@@ -9,7 +9,6 @@ use App\Models\Area;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreShopRequest;
