@@ -48,7 +48,7 @@ class ShopController extends Controller
         $times = $this->shopService->getBusinessHours($openTime, $closeTime, $date->format('Y-m-d'), $current);
 
         $reservation = Reservation::where('shop_id', $id)->latest()->first();
-        
+
         // ユーザーが他のページに遷移する際にセッションデータをクリアするためのフラグを設定
         $request->session()->put('clear_session_on_leave', true);
         \Log::info('Session clear flag set');

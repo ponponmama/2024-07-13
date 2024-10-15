@@ -66,7 +66,7 @@
                                     </select>
                                     <span class="custom-select-icon"></span>
                                 </div>
-                            </div>  
+                            </div>
                         </form>
                         <div class="reservation-button-container">
                             <button type="submit" class="edit-reservation-button" form="update-form-{{ $reservation->id }}">
@@ -109,7 +109,7 @@
                 @endforeach
             </div>
         @endif
-        <div class="favorite-shops-section">   
+        <div class="favorite-shops-section">
             <h2 class="favorite-title">お気に入り店舗</h2>
             <div class="favorite-shops">
                 @foreach ($favorites as $favorite)

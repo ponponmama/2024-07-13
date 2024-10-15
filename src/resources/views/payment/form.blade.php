@@ -48,7 +48,7 @@
                 lineHeight: "30px",
                 textAlign: "center",
                 '::placeholder': {
-                color: '#808080' 
+                color: '#808080'
             }
             }
         };

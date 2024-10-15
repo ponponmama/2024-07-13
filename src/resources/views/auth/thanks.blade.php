@@ -6,7 +6,7 @@
     <title>登録完了</title>
     <link rel="stylesheet" href="{{ asset('css/common-auth-styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-    
+
 </head>
 <body class="thanks_body">
     <div class="thanks-form">

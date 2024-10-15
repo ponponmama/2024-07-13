@@ -56,5 +56,4 @@ class Shop extends Model
     {
         return Carbon::createFromFormat('H:i:s', $value)->format('H:i');
     }
-    
 }

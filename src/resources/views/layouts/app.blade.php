@@ -27,6 +27,6 @@
             </div>
             @yield('content')
         </div>
-    </main> 
+    </main>
 </body>
 </html>

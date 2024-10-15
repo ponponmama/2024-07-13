@@ -62,7 +62,7 @@ class ShopManagerController extends Controller
     {
         // auth()->id() で現在認証されているユーザーのIDを取得し、そのIDを持つ店舗を検索
         $shop = Shop::where('user_id', auth()->id())->firstOrFail();
-        
+
         return view('shop_manager.manage-shop', compact('shop'));
 
     }

@@ -23,7 +23,7 @@ class ReservationController extends Controller
     {
         $this->shopService = $shopService;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -239,7 +239,7 @@ class ReservationController extends Controller
         $reservations = Reservation::where('user_id', $user_id)->with('shop')->get(); // ユーザーの予約と関連する店舗情報を取得
 
         return view('reservations.my', ['reservations' => $reservations]); // ビューにデータを渡す
-    } 
+    }
 
     //マイページで予約の削除処理
     public function destroy($id)

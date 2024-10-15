@@ -22,7 +22,7 @@
             font-weight: bold;
         }
 
-        img {
+        .qr_code_img {
             display: block;
             margin: 0 auto; /* 画像を中央に配置 */
         }
@@ -38,7 +38,7 @@
             <p>人数: {{ $reservation->number }}</p>
             <p>店舗: {{ $reservation->shop->shop_name }}</p>
             <p>QRコードをご来店時にご提示ください。</p>
-            <img src="{{ asset($reservation->qr_code) }}" alt="QR Code">
+            <img src="{{ asset($reservation->qr_code) }}" alt="QR Code" class="qr_code_img">
         </div>
     </div>
 </body>

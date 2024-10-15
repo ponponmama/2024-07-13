@@ -67,7 +67,7 @@ class AdminController extends Controller
     public function createShop(StoreShopRequest $request)
     {
         $validated = $request->validated();
-        
+
         try {
             DB::beginTransaction();
 
@@ -104,7 +104,7 @@ class AdminController extends Controller
             return back()->withErrors('登録に失敗しました。' . $e->getMessage());
         }
     }
-    
+
     public function destroy(User $user)
     {
         if (!auth()->user()->can('delete', $user)) {

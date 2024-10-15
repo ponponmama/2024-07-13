@@ -19,13 +19,13 @@
             @endforeach
             @foreach ($shop->genres as $genre)
                 ＃{{ $genre->genre_name }}
-            @endforeach                        
+            @endforeach
         </p>
         <p class="description">
             {{ $shop->description }}
         </p>
     </div>
-@endsection    
+@endsection
 @section('reservation_form')
     <div class="form-section">
         <h2 class="reserve">

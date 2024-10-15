@@ -24,7 +24,7 @@
                         <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
                     @endforeach
                 </select>
-                <span class="custom-select-icon"></span> 
+                <span class="custom-select-icon"></span>
             </div>
             <button type="submit" class="search-button">
                 <img src="{{ asset('images/search.png') }}" alt="Search" class="search_img">

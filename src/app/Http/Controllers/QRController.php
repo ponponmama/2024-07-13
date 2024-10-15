@@ -11,7 +11,7 @@ class QRController extends Controller
 {
     //指定された予約IDからQRコードをデコードします。
     public function decodeQRFromId($id)
-    {   
+    {
         // 予約データを取得し、存在しない場合は404エラーを返します。
         $reservation = Reservation::findOrFail($id);
         // QRコードのファイルパスを取得

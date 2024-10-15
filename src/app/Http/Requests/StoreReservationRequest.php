@@ -41,7 +41,7 @@ class StoreReservationRequest extends FormRequest
     }
 
     public function messages()
-    {   
+    {
        return [
             'date.required' => '予約日付を入力してください。',
             'time.required' => '予約時刻を入力してください。',

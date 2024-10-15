@@ -16,11 +16,10 @@ namespace App\Http\Controllers;
     {
         return view('auth.register');
     }
-       
+
     // ユーザー登録処理
     public function register(RegisterRequest $request)
     {
-           
         $user = User::create([
             'user_name' => $request->user_name,  
             'email' => $request->email,
@@ -101,7 +100,7 @@ namespace App\Http\Controllers;
     public function logout(Request $request)
     {
         $request->session()->forget('reservation_details');
-        
+
         Auth::logout();
 
         $request->session()->invalidate();

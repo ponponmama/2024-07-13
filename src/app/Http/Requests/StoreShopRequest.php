@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreShopRequest extends FormRequest
 {
-    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -36,7 +35,7 @@ class StoreShopRequest extends FormRequest
     }
 
     public function messages()
-    {   
+    {
         return [
             'shop_name.required' => '店舗名は必須です。',
             'shop_name.string' => '店舗名は文字列である必要があります。',
@@ -57,7 +56,6 @@ class StoreShopRequest extends FormRequest
             'open_time.string' => '開店時間は文字列である必要があります。',
             'close_time.required' => '閉店時間は必須です。',
             'close_time.string' => '閉店時間は文字列である必要があります。',
-    
         ];
     }
 }

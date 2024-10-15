@@ -60,7 +60,7 @@
     <div class="qr-section-button">
         <button id="start-scanner-btn" class="start-scanner-btn">スキャン</button>
         <button id="stop-scanner-btn" class="stop-scanner-btn">停止</button>
-        <button id="reset-btn" class="reset-btn">リセット</button> 
+        <button id="reset-btn" class="reset-btn">リセット</button>
     </div>
 </div>
 <div class="camera-reader" id="reader">

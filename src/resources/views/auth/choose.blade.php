@@ -7,7 +7,7 @@
 @section('content')
 <div class="choose-container">
     <div class="choose-section">
-    <p class="text-2">ご予約には登録またはログインが必要です</p>   
+    <p class="text-2">ご予約には登録またはログインが必要です</p>
     <p class="text">ログインまたは登録お願いします</p>
         <div class="link-button">
             <a href="{{ route('login') }}" class="a-link">ログイン</a>

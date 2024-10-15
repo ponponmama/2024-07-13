@@ -33,7 +33,7 @@ class UserController extends Controller
             $shop = $reservation->shop;
             $current = Carbon::now();
             $date = $current->format('Y-m-d');
-            $reservation->times = $this->shopService->getBusinessHours($shop->open_time, $shop->close_time, $date, $current);
+            $reservation->times = $this->shopService->getBusinessHours($shop->open_time, $shop->close_time, $date,$current);
             \Log::info('Times for reservation ' . $reservation->id . ': ' . json_encode($reservation->times));
         }
 

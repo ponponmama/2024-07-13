@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="admin_container">
-    <h1 class="form-title">Shop Manager Registration</h1>    
+    <h1 class="form-title">Shop Manager Registration</h1>
     <p class="user__name">お疲れ様です！　{{ Auth::user()->user_name }}さん</p>
     <div class="shop_manager_form">
         <h2 class="manage_admin">店舗代表者登録</h2>
@@ -147,7 +147,7 @@
                     {{ $message }}
                 @enderror
             </div>
-            <div class="button-container">   
+            <div class="button-container">
                 <button class="new-register-button" type="submit">新店舗登録</button>
             </div>
         </form>
